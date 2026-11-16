@@ -81,6 +81,14 @@
       border-color: #6A8B74;
       box-shadow: 0 16px 32px -12px rgba(77, 109, 87, 0.2);
     }
+    /* Custom scrollbar for thumbnail strip */
+    .thumb-strip::-webkit-scrollbar {
+      height: 5px;
+    }
+    .thumb-strip::-webkit-scrollbar-thumb {
+      background: #6A8B74;
+      border-radius: 999px;
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-sage selection:text-white">
@@ -91,7 +99,6 @@
       <!-- LEFT STICKY SIDEBAR -->
       <aside class="lg:col-span-3 lg:sticky lg:top-8 space-y-5">
         <div class="bento-card p-6 text-center">
-          <!-- Avatar Circle -->
           <div class="relative w-28 h-28 mx-auto mb-4 rounded-full p-1 bg-sage-light border-2 border-sage overflow-hidden shadow-sm">
             <img id="sidebarAvatar" src="avatar.png" onerror="this.onerror=null;this.src='avatar.jpg';" alt="Nguyễn Ngô Hoàng Nhật" class="w-full h-full object-cover object-top rounded-full bg-sage-dark" />
           </div>
@@ -103,7 +110,6 @@
           <p class="text-xs font-bold text-sage-dark/90 mt-0.5">Nguyễn Ngô Hoàng</p>
           <p class="text-xs text-sage-muted mt-1.5">Multimedia Designer & Creative Team Leader</p>
 
-          <!-- Social & Portfolio Links -->
           <div class="flex items-center justify-center gap-2.5 mt-4">
             <a href="#portfolio" title="Xem Portfolio Dự Án" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-dark transition text-xs font-bold">
               Bē
@@ -116,7 +122,6 @@
             </a>
           </div>
 
-          <!-- Primary CTA Buttons -->
           <div class="grid grid-cols-2 gap-2.5 mt-5">
             <a href="#portfolio" class="py-2.5 px-3 rounded-full bg-sage-dark hover:bg-sage text-white text-xs font-bold transition shadow-sm flex items-center justify-center gap-1">
               Portfolio ↓
@@ -127,7 +132,6 @@
           </div>
         </div>
 
-        <!-- Navigation Menu -->
         <nav class="bento-card p-3 space-y-1 hidden lg:block">
           <a href="#home" class="nav-item active flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-sage-muted hover:bg-cream-soft transition">
             <span class="w-2 h-2 rounded-full bg-sage"></span> Tổng Quan
@@ -159,7 +163,6 @@
         <!-- HERO BANNER -->
         <section id="home" class="bento-card p-6 sm:p-8 lg:p-10 relative overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <!-- Hero Portrait Card -->
             <div class="md:col-span-5">
               <div class="sage-stripes rounded-2xl p-4 pb-0 relative overflow-hidden shadow-inner border border-sage/30 aspect-[4/4.3] flex items-end justify-center">
                 <span class="absolute top-3 left-3 font-mono text-[10px] uppercase tracking-widest text-white/80 bg-black/15 px-2.5 py-1 rounded-md">
@@ -169,7 +172,6 @@
               </div>
             </div>
 
-            <!-- Hero Typography & Intro -->
             <div class="md:col-span-7 space-y-4">
               <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-light text-sage-dark text-xs font-bold">
                 <span class="w-2 h-2 rounded-full bg-sage-dark animate-pulse"></span>
@@ -204,7 +206,6 @@
             </div>
           </div>
 
-          <!-- Worked With / Brands Strip -->
           <div class="mt-8 pt-6 border-t border-sage-border flex flex-wrap items-center justify-between gap-4">
             <span class="text-xs font-mono uppercase tracking-wider text-sage-muted">Dấu ấn đồng hành:</span>
             <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-extrabold text-sage-dark/80">
@@ -252,9 +253,8 @@
             </div>
           </div>
 
-          <!-- Portfolio Grid -->
           <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- 5 Project cards rendered dynamically via JS -->
+            <!-- Rendered via JS -->
           </div>
         </section>
 
@@ -269,7 +269,6 @@
             </p>
           </div>
 
-          <!-- 4 Stat Cards -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
             <div class="rounded-2xl bg-cream-bg border border-sage-border p-5">
               <div class="text-3xl sm:text-4xl font-black text-sage-dark">11<span class="text-sage">+</span></div>
@@ -300,7 +299,6 @@
           </div>
 
           <div class="space-y-3">
-            <!-- Row 001 -->
             <div class="group rounded-2xl bg-cream-bg hover:bg-sage-light/60 border border-sage-border p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition">
               <div class="flex items-start sm:items-center gap-4">
                 <span class="font-mono text-xs font-bold text-sage-dark bg-sage-light px-2.5 py-1 rounded-md">[001]</span>
@@ -315,7 +313,6 @@
               </div>
             </div>
 
-            <!-- Row 002 -->
             <div class="group rounded-2xl bg-cream-bg hover:bg-sage-light/60 border border-sage-border p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition">
               <div class="flex items-start sm:items-center gap-4">
                 <span class="font-mono text-xs font-bold text-sage-dark bg-sage-light px-2.5 py-1 rounded-md">[002]</span>
@@ -330,7 +327,6 @@
               </div>
             </div>
 
-            <!-- Row 003 -->
             <div class="group rounded-2xl bg-cream-bg hover:bg-sage-light/60 border border-sage-border p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition">
               <div class="flex items-start sm:items-center gap-4">
                 <span class="font-mono text-xs font-bold text-sage-dark bg-sage-light px-2.5 py-1 rounded-md">[003]</span>
@@ -345,7 +341,6 @@
               </div>
             </div>
 
-            <!-- Row 004 -->
             <div class="group rounded-2xl bg-cream-bg hover:bg-sage-light/60 border border-sage-border p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition">
               <div class="flex items-start sm:items-center gap-4">
                 <span class="font-mono text-xs font-bold text-sage-dark bg-sage-light px-2.5 py-1 rounded-md">[004]</span>
@@ -432,7 +427,6 @@
           </div>
 
           <div class="space-y-4">
-            <!-- Job 1 -->
             <div class="rounded-2xl bg-cream-bg border-l-4 border-l-sage-dark border border-sage-border p-5 sm:p-6">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <div>
@@ -449,7 +443,6 @@
               </ul>
             </div>
 
-            <!-- Job 2 -->
             <div class="rounded-2xl bg-cream-bg border border-sage-border p-5 sm:p-6">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <div>
@@ -465,7 +458,6 @@
               </ul>
             </div>
 
-            <!-- Job 3 -->
             <div class="rounded-2xl bg-cream-bg border border-sage-border p-5 sm:p-6">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <div>
@@ -480,7 +472,6 @@
               </ul>
             </div>
 
-            <!-- Job 4 -->
             <div class="rounded-2xl bg-cream-bg border border-sage-border p-5 sm:p-6">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <div>
@@ -496,7 +487,6 @@
             </div>
           </div>
 
-          <!-- Education & Certificates Box -->
           <div class="rounded-2xl bg-sage-light/70 border border-sage/30 p-5 space-y-4">
             <span class="block text-xs font-mono uppercase font-bold text-sage-dark">Học Vấn & Chứng Chỉ Chuyên Ngành</span>
 
@@ -514,7 +504,6 @@
 
         <!-- CONTACT & PERSONAL DETAILS -->
         <section id="contact" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Personal Info Card -->
           <div class="bento-card p-6 sm:p-8 flex flex-col justify-between">
             <div>
               <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-bold mb-4">
@@ -542,7 +531,6 @@
             </div>
           </div>
 
-          <!-- Contact CTA Card -->
           <div class="bento-card p-6 sm:p-8 bg-sage-dark text-white border-sage-dark flex flex-col justify-between">
             <div>
               <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold mb-4">
@@ -550,7 +538,7 @@
               </span>
               <h3 class="text-2xl sm:text-3xl font-black leading-tight">Sẵn sàng đồng hành cùng dự án tiếp theo của bạn.</h3>
               <p class="text-sm text-white/80 mt-3 leading-relaxed">
-                Liên hệ trực tiếp qua điện thoại, email hoặc bấm vào từng dự án bên trên để xem chi tiết các ấn phẩm Key Visual, POSM, Post, Motion Graphic & AI Video đã thực hiện.
+                Liên hệ trực tiếp qua điện thoại, email hoặc bấm vào từng dự án bên trên để xem album trình chiếu các ấn phẩm Key Visual, POSM, Post, Motion Graphic & AI Video.
               </p>
             </div>
 
@@ -575,59 +563,66 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX MODAL FOR PROJECT DETAILS -->
-  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-sage-ink/80 backdrop-blur-sm p-4 sm:p-6">
-    <div class="bg-cream-card border border-sage-border rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-      <!-- Modal Header -->
-      <div class="sticky top-0 z-10 bg-cream-card/95 backdrop-blur-md px-6 py-4 border-b border-sage-border flex items-center justify-between gap-4">
-        <div>
-          <span id="modalCategory" class="font-mono text-xs font-bold text-sage-dark uppercase"></span>
-          <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-sage-ink"></h3>
+  <!-- SLIDESHOW ALBUM MODAL (MATCHING BRAND CREAM & SAGE THEME) -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-sage-ink/80 backdrop-blur-md p-3 sm:p-6">
+    <div class="bg-cream-card border-2 border-sage-border rounded-3xl max-w-5xl w-full max-h-[94vh] overflow-y-auto shadow-2xl flex flex-col">
+      
+      <!-- Top Bar -->
+      <div class="px-5 sm:px-7 py-4 border-b border-sage-border flex items-center justify-between gap-4 bg-cream-card sticky top-0 z-20">
+        <div class="flex items-center gap-3">
+          <span id="modalCategory" class="px-3 py-1 rounded-full bg-sage-light text-sage-dark font-mono text-xs font-bold uppercase"></span>
+          <span id="modalSlideCounter" class="font-mono text-xs font-bold text-sage-muted"></span>
         </div>
-        <button id="closeModalBtn" class="w-10 h-10 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-ink font-bold transition shrink-0">
+        <button id="closeModalBtn" title="Đóng (ESC)" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage-dark hover:text-white flex items-center justify-center text-sage-ink font-bold transition shrink-0">
           ✕
         </button>
       </div>
 
-      <!-- Modal Body -->
-      <div class="p-6 space-y-6">
-        <!-- Main Preview Image / Video Frame -->
-        <div id="modalMediaWrapper" class="rounded-2xl overflow-hidden border border-sage-border bg-sage-light/50">
-          <!-- Injected via JS -->
+      <!-- Main Slideshow Stage -->
+      <div class="p-4 sm:p-7 space-y-5 bg-cream-bg/60">
+        
+        <!-- Image Frame with Left/Right Arrows -->
+        <div class="relative rounded-2xl overflow-hidden border border-sage-border bg-sage-ink/95 shadow-lg group select-none">
+          <div id="modalMediaStage" class="w-full h-[320px] sm:h-[460px] lg:h-[520px] flex items-center justify-center relative">
+            <!-- Active Slide Injected Here -->
+          </div>
+
+          <!-- Prev Arrow -->
+          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-cream-card/90 hover:bg-sage-dark text-sage-dark hover:text-white flex items-center justify-center shadow-lg transition font-black text-lg">
+            ‹
+          </button>
+
+          <!-- Next Arrow -->
+          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-cream-card/90 hover:bg-sage-dark text-sage-dark hover:text-white flex items-center justify-center shadow-lg transition font-black text-lg">
+            ›
+          </button>
         </div>
 
-        <!-- Project Description & Metadata -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="md:col-span-2 space-y-3">
-            <h4 class="text-sm font-extrabold uppercase tracking-wider text-sage-dark">Mô Tả Dự Án & Vai Trò</h4>
-            <p id="modalDesc" class="text-sm text-sage-muted leading-relaxed"></p>
-          </div>
-          <div class="rounded-2xl bg-cream-bg border border-sage-border p-4 space-y-3 text-xs">
-            <div>
-              <span class="text-sage-muted block">Khách hàng / Thương hiệu</span>
-              <strong id="modalClient" class="text-sage-ink text-sm"></strong>
-            </div>
-            <div>
-              <span class="text-sage-muted block">Vai trò đảm nhiệm</span>
-              <strong id="modalRole" class="text-sage-ink text-sm"></strong>
-            </div>
-            <div>
-              <span class="text-sage-muted block">Công cụ thực hiện</span>
-              <div id="modalTools" class="flex flex-wrap gap-1.5 mt-1"></div>
-            </div>
-          </div>
+        <!-- Centered KV / Slide Title Directly Under the Image -->
+        <div class="text-center max-w-2xl mx-auto space-y-1 px-2">
+          <h3 id="modalSlideCaption" class="text-xl sm:text-2xl font-black text-sage-dark tracking-tight"></h3>
+          <p id="modalProjectSubtitle" class="text-xs sm:text-sm font-medium text-sage-muted"></p>
         </div>
 
-        <!-- Gallery Sub-images -->
-        <div id="modalGallery" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+        <!-- Dot Indicators & Thumbnail Strip -->
+        <div class="space-y-3">
+          <div id="modalDots" class="flex items-center justify-center gap-2"></div>
+          <div id="modalThumbnails" class="thumb-strip flex items-center justify-center gap-2.5 overflow-x-auto py-1 px-2"></div>
+        </div>
+
+        <!-- Compact Project Info Footer -->
+        <div class="rounded-2xl bg-cream-card border border-sage-border p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <p id="modalDesc" class="text-xs sm:text-sm text-sage-muted leading-relaxed md:max-w-2xl"></p>
+          <div class="flex flex-wrap gap-1.5 shrink-0" id="modalTools"></div>
+        </div>
+
       </div>
     </div>
   </div>
 
   <script>
     // =========================================================================
-    // 5 DỰ ÁN PORTFOLIO CHÍNH XÁC THEO YÊU CẦU:
-    // 1. Key Visual | 2. POSM | 3. Post | 4. Motion Graphic | 5. AI Video
+    // CẤU HÌNH 5 ALBUM PORTFOLIO (MỖI MỤC CHỨA NHIỀU HÌNH TRÌNH CHIẾU DẠNG SLIDER)
     // =========================================================================
     const PORTFOLIO_PROJECTS = [
       {
@@ -636,13 +631,19 @@
         categoryLabel: 'Key Visual',
         title: 'King Coffee — Chiến Dịch Key Visual Chủ Đạo',
         client: 'TNI Corporation / King Coffee',
-        role: 'Multimedia Designer & Key Visual Artist',
         tools: ['Photoshop', 'Illustrator', '3D Mockup'],
-        cover: 'projects/project-01.jpg',
-        gallery: ['projects/project-01.jpg'],
-        accentBg: 'from-[#8B261D] to-[#4A120D]',
-        badge: 'KEY VISUAL',
-        description: 'Thiết kế hệ thống Key Visual chủ đạo cho các chiến dịch lớn của King Coffee (Tết Sum Vầy, Cà Phê Sữa Đá X3, Trà Oolong, Món Ngon Tròn Vị), định hình phong cách thị giác xuyên suốt toàn chiến dịch.'
+        cover: 'projects/kv/01.jpg',
+        accentBg: 'from-[#4D6D57] to-[#2B4032]',
+        badge: 'KEY VISUAL ALBUM',
+        description: 'Bộ sưu tập Key Visual chủ đạo cho các chiến dịch lớn của King Coffee (Tết Sum Vầy, Cà Phê Sữa Đá X3, Trà Oolong, Món Ngon Tròn Vị) triển khai đồng bộ trên toàn quốc.',
+        // Bạn chỉ cần chép ảnh vào thư mục projects/kv/ với tên 01.jpg, 02.jpg, 03.jpg...
+        slides: [
+          { src: 'projects/kv/01.jpg', caption: 'KV 01 — King Coffee Tết Sum Vầy & Quà Tặng Xuân' },
+          { src: 'projects/kv/02.jpg', caption: 'KV 02 — King Coffee X3 Mạnh Gấp 3 Tỉnh Tạo Cả Ngày Dài' },
+          { src: 'projects/kv/03.jpg', caption: 'KV 03 — Trà Oolong Chất Topping Vui' },
+          { src: 'projects/kv/04.jpg', caption: 'KV 04 — Món Ngon Tròn Vị Tiện Lợi Mỗi Ngày' },
+          { src: 'projects/kv/05.jpg', caption: 'KV 05 — Max Tươi Mới Max Tỉnh Táo' }
+        ]
       },
       {
         id: 'posm-branding',
@@ -650,13 +651,16 @@
         categoryLabel: 'POSM',
         title: 'Hệ Thống Ấn Phẩm POSM, Catalogue & Booth Sự Kiện',
         client: 'TNI Corporation & Việt Khởi Land',
-        role: 'Chuyên Viên Thiết Kế Ấn Phẩm & POSM',
         tools: ['Illustrator', 'Photoshop', '3D Mockup'],
-        cover: 'projects/project-02.jpg',
-        gallery: ['projects/project-02.jpg'],
+        cover: 'projects/posm/01.jpg',
         accentBg: 'from-[#5B7A65] to-[#34493B]',
-        badge: 'POSM',
-        description: 'Thiết kế trọn bộ vật phẩm quảng cáo điểm bán (POSM), Standee, Wobbler, Hanger siêu thị, Brochure và Catalogue dự án bất động sản với quy chuẩn in ấn chất lượng cao.'
+        badge: 'POSM ALBUM',
+        description: 'Trọn bộ vật phẩm quảng cáo điểm bán (POSM), Standee, Wobbler, Hanger siêu thị, Brochure và Catalogue dự án bất động sản với quy chuẩn in ấn chất lượng cao.',
+        slides: [
+          { src: 'projects/posm/01.jpg', caption: 'POSM 01 — Booth Trưng Bày & Kệ Siêu Thị' },
+          { src: 'projects/posm/02.jpg', caption: 'POSM 02 — Standee & Banner Sự Kiện Mở Bán' },
+          { src: 'projects/posm/03.jpg', caption: 'POSM 03 — Bộ Catalogue & Brochure Thương Mại' }
+        ]
       },
       {
         id: 'social-post-campaign',
@@ -664,13 +668,16 @@
         categoryLabel: 'Post',
         title: 'Chuỗi Thiết Kế Social Post & Banner Digital',
         client: 'Milano Nail Spa (US) & King Coffee',
-        role: 'Creative Team Leader / Social Designer',
         tools: ['Photoshop', 'Illustrator'],
-        cover: 'projects/project-03.jpg',
-        gallery: ['projects/project-03.jpg'],
+        cover: 'projects/post/01.jpg',
         accentBg: 'from-[#4D6D57] to-[#2B4032]',
-        badge: 'POST',
-        description: 'Sáng tạo và đồng bộ hệ thống ấn phẩm truyền thông mạng xã hội (Facebook, Instagram Post, Carousel, Banner khuyến mãi theo mùa) tối ưu tỷ lệ tương tác và nhận diện thương hiệu.'
+        badge: 'SOCIAL POST ALBUM',
+        description: 'Sáng tạo và đồng bộ hệ thống ấn phẩm truyền thông mạng xã hội (Facebook, Instagram Post, Carousel, Banner khuyến mãi theo mùa) tối ưu tỷ lệ tương tác.',
+        slides: [
+          { src: 'projects/post/01.jpg', caption: 'POST 01 — Bộ Sưu Tập Nail Mùa Lễ Hội (Milano Nail Spa)' },
+          { src: 'projects/post/02.jpg', caption: 'POST 02 — Banner Chương Trình Ưu Đãi & Sự Kiện' },
+          { src: 'projects/post/03.jpg', caption: 'POST 03 — Chuỗi Bài Đăng Tương Tác Mạng Xã Hội' }
+        ]
       },
       {
         id: 'motion-graphic-2d',
@@ -678,13 +685,16 @@
         categoryLabel: 'Motion Graphic',
         title: '2D Motion Graphics, Intro & Video Quảng Bá',
         client: 'TNI Corporation & Syslytic (EEzZ App)',
-        role: 'Motion Graphic Designer & Video Editor',
         tools: ['After Effects', 'Premiere Pro', 'Illustrator'],
-        cover: 'projects/project-04.jpg',
-        gallery: ['projects/project-04.jpg'],
+        cover: 'projects/motion/01.jpg',
         accentBg: 'from-[#6A8B74] to-[#3B5242]',
         badge: 'MOTION GRAPHIC',
-        description: 'Sản xuất 2D Animation, Motion Graphics giới thiệu tính năng ứng dụng EEzZ Salon App tại Mỹ, video LED sự kiện doanh nghiệp và hậu kỳ video truyền thông thương hiệu.'
+        description: 'Sản xuất 2D Animation, Motion Graphics giới thiệu tính năng ứng dụng EEzZ Salon App tại Mỹ, video LED sự kiện doanh nghiệp và hậu kỳ video thương hiệu.',
+        slides: [
+          { src: 'projects/motion/01.jpg', caption: 'MOTION 01 — Intro & Visual LED Sự Kiện Doanh Nghiệp' },
+          { src: 'projects/motion/02.jpg', caption: 'MOTION 02 — Video Giới Thiệu Tính Năng App EEzZ' },
+          { src: 'projects/motion/03.jpg', caption: 'MOTION 03 — 2D Animation Quảng Bá Sản Phẩm' }
+        ]
       },
       {
         id: 'ai-video-commercial',
@@ -692,13 +702,16 @@
         categoryLabel: 'AI Video',
         title: 'AI Video Production & Hiệu Ứng Thị Giác Sáng Tạo',
         client: 'Milano Nail Spa & Commercial R&D',
-        role: 'AI Video Creator & Art Director',
         tools: ['AI Video', 'After Effects', 'Premiere Pro'],
-        cover: 'projects/project-05.jpg',
-        gallery: ['projects/project-05.jpg'],
+        cover: 'projects/aivideo/01.jpg',
         accentBg: 'from-[#365341] to-[#1E2B24]',
         badge: 'AI VIDEO',
-        description: 'Ứng dụng công nghệ AI Video Generation kết hợp dựng hậu kỳ After Effects để sản xuất TVC sản phẩm, video ngắn (Reels/TikTok) với kỹ xảo chuyển cảnh ấn tượng và tối ưu chi phí quay dựng.'
+        description: 'Ứng dụng công nghệ AI Video Generation kết hợp dựng hậu kỳ After Effects để sản xuất TVC sản phẩm, video ngắn (Reels/TikTok) với hiệu ứng thị giác ấn tượng.',
+        slides: [
+          { src: 'projects/aivideo/01.jpg', caption: 'AI VIDEO 01 — TVC Sản Phẩm Ứng Dụng Generative AI' },
+          { src: 'projects/aivideo/02.jpg', caption: 'AI VIDEO 02 — Reels / Short Video Hiệu Ứng Chuyển Cảnh' },
+          { src: 'projects/aivideo/03.jpg', caption: 'AI VIDEO 03 — Storyboard & Phối Cảnh 3D AI' }
+        ]
       }
     ];
 
@@ -724,13 +737,16 @@
               <div style="display:none" class="w-full h-full p-5 flex-col justify-between text-white">
                 <div class="flex items-center justify-between">
                   <span class="font-mono text-[10px] tracking-widest uppercase px-2.5 py-1 rounded bg-white/15">${proj.badge}</span>
-                  <span class="font-mono text-xs text-white/60">0${idx + 1}</span>
+                  <span class="font-mono text-xs text-white/75">${proj.slides.length} ảnh</span>
                 </div>
                 <div>
                   <p class="text-[11px] text-white/75 font-medium">${proj.client}</p>
                   <h4 class="text-base font-extrabold leading-snug mt-0.5 line-clamp-2">${proj.title}</h4>
                 </div>
               </div>
+              <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-sage-ink/75 text-white font-mono text-[10px] font-bold backdrop-blur-sm">
+                Album • ${proj.slides.length} hình
+              </span>
               <span class="absolute top-3 right-3 w-8 h-8 rounded-full bg-cream-card/90 text-sage-dark flex items-center justify-center text-xs font-bold opacity-0 group-hover:opacity-100 transition shadow">
                 ↗
               </span>
@@ -766,58 +782,98 @@
       });
     });
 
-    // Modal Logic
+    // =========================================================================
+    // SLIDESHOW LIGHTBOX LOGIC
+    // =========================================================================
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
+    const prevSlideBtn = document.getElementById('prevSlideBtn');
+    const nextSlideBtn = document.getElementById('nextSlideBtn');
+
+    let currentProject = null;
+    let currentSlideIndex = 0;
 
     function openProjectModal(projectId) {
       const proj = PORTFOLIO_PROJECTS.find(p => p.id === projectId);
       if (!proj) return;
 
+      currentProject = proj;
+      currentSlideIndex = 0;
+
       document.getElementById('modalCategory').textContent = proj.categoryLabel;
-      document.getElementById('modalTitle').textContent = proj.title;
+      document.getElementById('modalProjectSubtitle').textContent = `${proj.title} • ${proj.client}`;
       document.getElementById('modalDesc').textContent = proj.description;
-      document.getElementById('modalClient').textContent = proj.client;
-      document.getElementById('modalRole').textContent = proj.role;
       document.getElementById('modalTools').innerHTML = proj.tools.map(t =>
         `<span class="px-2.5 py-1 rounded-full bg-sage-light text-sage-dark font-bold text-[11px]">${t}</span>`
       ).join('');
 
-      const mediaWrapper = document.getElementById('modalMediaWrapper');
-      mediaWrapper.innerHTML = `
-        <div class="relative min-h-[260px] bg-gradient-to-br ${proj.accentBg} flex items-center justify-center">
-          <img
-            src="${proj.cover}"
-            alt="${proj.title}"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-            class="w-full max-h-[520px] object-contain"
-          />
-          <div style="display:none" class="p-10 text-center text-white space-y-2">
-            <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15">${proj.badge}</span>
-            <h4 class="text-2xl font-black pt-2">${proj.title}</h4>
-            <p class="text-xs text-white/75 max-w-md mx-auto">Chép file ảnh vào thư mục <code>projects/${proj.cover.split('/')[1]}</code> để hiển thị hình ảnh đầy đủ tại đây.</p>
-          </div>
-        </div>
-      `;
-
-      const galleryEl = document.getElementById('modalGallery');
-      if (proj.gallery && proj.gallery.length > 1) {
-        galleryEl.innerHTML = proj.gallery.slice(1).map(imgSrc => `
-          <img src="${imgSrc}" onerror="this.style.display='none'" class="w-full rounded-xl border border-sage-border object-cover" />
-        `).join('');
-      } else {
-        galleryEl.innerHTML = '';
-      }
+      updateSlideView();
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
     }
 
+    function updateSlideView() {
+      if (!currentProject) return;
+      const slides = currentProject.slides;
+      const total = slides.length;
+      const slide = slides[currentSlideIndex];
+
+      document.getElementById('modalSlideCounter').textContent = `Hình ${currentSlideIndex + 1} / ${total}`;
+      // Centered KV name directly below the image
+      document.getElementById('modalSlideCaption').textContent = slide.caption;
+
+      const stage = document.getElementById('modalMediaStage');
+      stage.innerHTML = `
+        <img
+          src="${slide.src}"
+          alt="${slide.caption}"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          class="max-w-full max-h-full object-contain transition-opacity duration-300"
+        />
+        <div style="display:none" class="w-full h-full p-8 flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg}">
+          <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-3">${currentProject.categoryLabel} • 0${currentSlideIndex + 1}</span>
+          <h4 class="text-xl sm:text-2xl font-black max-w-lg">${slide.caption}</h4>
+          <p class="text-xs text-white/80 mt-2 max-w-md">
+            Chép file ảnh của bạn vào thư mục <code class="bg-black/25 px-1.5 py-0.5 rounded">${slide.src}</code> để hiển thị hình trình chiếu tại đây.
+          </p>
+        </div>
+      `;
+
+      // Render Dots
+      const dotsEl = document.getElementById('modalDots');
+      dotsEl.innerHTML = slides.map((_, i) => `
+        <button onclick="goToSlide(${i})" class="h-2 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-sage-dark' : 'w-2 bg-sage/35 hover:bg-sage'}"></button>
+      `).join('');
+
+      // Render Thumbnails
+      const thumbsEl = document.getElementById('modalThumbnails');
+      thumbsEl.innerHTML = slides.map((s, i) => `
+        <button onclick="goToSlide(${i})" class="relative w-20 h-13 rounded-lg overflow-hidden border-2 transition shrink-0 ${i === currentSlideIndex ? 'border-sage-dark ring-2 ring-sage/40 scale-105' : 'border-sage-border opacity-65 hover:opacity-100'}">
+          <img src="${s.src}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-12 object-cover" />
+          <div style="display:none" class="w-full h-12 bg-sage-dark text-white font-mono text-[10px] font-bold items-center justify-center">
+            0${i + 1}
+          </div>
+        </button>
+      `).join('');
+    }
+
+    function goToSlide(index) {
+      if (!currentProject) return;
+      const total = currentProject.slides.length;
+      currentSlideIndex = (index + total) % total;
+      updateSlideView();
+    }
+
+    prevSlideBtn.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
+    nextSlideBtn.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
+
     function closeModal() {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
       document.body.style.overflow = '';
+      currentProject = null;
     }
 
     closeModalBtn.addEventListener('click', closeModal);
@@ -825,7 +881,10 @@
       if (e.target === modal) closeModal();
     });
     document.addEventListener('keydown', (e) => {
+      if (!currentProject) return;
       if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') goToSlide(currentSlideIndex - 1);
+      if (e.key === 'ArrowRight') goToSlide(currentSlideIndex + 1);
     });
 
     // Initial render
