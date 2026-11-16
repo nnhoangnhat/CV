@@ -68,6 +68,19 @@
       color: #4D6D57;
       font-weight: 700;
     }
+    .filter-btn.active {
+      background-color: #4D6D57;
+      color: #FFFFFF;
+      border-color: #4D6D57;
+    }
+    .project-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: #6A8B74;
+      box-shadow: 0 16px 32px -12px rgba(77, 109, 87, 0.2);
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-sage selection:text-white">
@@ -80,7 +93,7 @@
         <div class="bento-card p-6 text-center">
           <!-- Avatar Circle -->
           <div class="relative w-28 h-28 mx-auto mb-4 rounded-full p-1 bg-sage-light border-2 border-sage overflow-hidden shadow-sm">
-            <img id="sidebarAvatar" src="Nhat.png" alt="Nguyễn Ngô Hoàng Nhật" class="w-full h-full object-cover object-top rounded-full bg-sage-dark" />
+            <img id="sidebarAvatar" src="avatar.png" onerror="this.onerror=null;this.src='avatar.jpg';" alt="Nguyễn Ngô Hoàng Nhật" class="w-full h-full object-cover object-top rounded-full bg-sage-dark" />
           </div>
 
           <span class="inline-block px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-semibold tracking-wide mb-2">
@@ -92,7 +105,7 @@
 
           <!-- Social & Portfolio Links -->
           <div class="flex items-center justify-center gap-2.5 mt-4">
-            <a href="https://nnhoangnhat.myportfolio.com" target="_blank" rel="noopener" title="Behance / Adobe Portfolio" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-dark transition text-xs font-bold">
+            <a href="#portfolio" title="Xem Portfolio Dự Án" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-dark transition text-xs font-bold">
               Bē
             </a>
             <a href="mailto:nnhoangnhat@gmail.com" title="Email" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-dark transition">
@@ -105,8 +118,8 @@
 
           <!-- Primary CTA Buttons -->
           <div class="grid grid-cols-2 gap-2.5 mt-5">
-            <a href="https://nnhoangnhat.myportfolio.com" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-full bg-sage-dark hover:bg-sage text-white text-xs font-bold transition shadow-sm flex items-center justify-center gap-1">
-              Portfolio ↗
+            <a href="#portfolio" class="py-2.5 px-3 rounded-full bg-sage-dark hover:bg-sage text-white text-xs font-bold transition shadow-sm flex items-center justify-center gap-1">
+              Portfolio ↓
             </a>
             <a href="#contact" class="py-2.5 px-3 rounded-full border border-sage text-sage-dark hover:bg-sage-light text-xs font-bold transition flex items-center justify-center">
               Liên Hệ
@@ -118,6 +131,9 @@
         <nav class="bento-card p-3 space-y-1 hidden lg:block">
           <a href="#home" class="nav-item active flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-sage-muted hover:bg-cream-soft transition">
             <span class="w-2 h-2 rounded-full bg-sage"></span> Tổng Quan
+          </a>
+          <a href="#portfolio" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-sage-muted hover:bg-cream-soft transition">
+            <span class="w-2 h-2 rounded-full bg-sage/40"></span> Portfolio Dự Án
           </a>
           <a href="#about" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-sage-muted hover:bg-cream-soft transition">
             <span class="w-2 h-2 rounded-full bg-sage/40"></span> Giới Thiệu & Số Liệu
@@ -143,13 +159,13 @@
         <!-- HERO BANNER -->
         <section id="home" class="bento-card p-6 sm:p-8 lg:p-10 relative overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <!-- Hero Portrait Card (Matching reference style) -->
+            <!-- Hero Portrait Card -->
             <div class="md:col-span-5">
               <div class="sage-stripes rounded-2xl p-4 pb-0 relative overflow-hidden shadow-inner border border-sage/30 aspect-[4/4.3] flex items-end justify-center">
                 <span class="absolute top-3 left-3 font-mono text-[10px] uppercase tracking-widest text-white/80 bg-black/15 px-2.5 py-1 rounded-md">
-                  MULTIMEDIA D E S I G N E R
+                  MULTIMEDIA DESIGNER
                 </span>
-                <img id="heroAvatar" src="Nhat.png" alt="Nhật Nguyễn Portrait" class="w-full h-[92%] object-cover object-top rounded-t-xl drop-shadow-xl" />
+                <img id="heroAvatar" src="avatar.png" onerror="this.onerror=null;this.src='avatar.jpg';" alt="Nhật Nguyễn Portrait" class="w-full h-[92%] object-cover object-top rounded-t-xl drop-shadow-xl" />
               </div>
             </div>
 
@@ -164,7 +180,7 @@
                 <p class="text-sm font-medium text-sage-muted mb-1">Xin chào, mình là</p>
                 <h1 class="text-sage-dark select-none">
                   <span class="block text-6xl sm:text-7xl lg:text-[88px] font-black leading-[0.95] tracking-tight">Nhật</span>
-                  <span class="block text-2xl sm:text-3xl lg:text-[36px] font-extrabold leading-tight tracking-tight mt-3.5">Nguyễn Ngô Hoàng</span>
+                  <span class="block text-2xl sm:text-3xl lg:text-[36px] font-extrabold leading-tight tracking-tight mt-4">Nguyễn Ngô Hoàng</span>
                 </h1>
               </div>
 
@@ -177,9 +193,9 @@
               </p>
 
               <div class="flex flex-wrap items-center gap-3 pt-2">
-                <a href="https://nnhoangnhat.myportfolio.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-sage-dark hover:bg-sage text-white text-sm font-bold transition shadow-sm">
+                <a href="#portfolio" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-sage-dark hover:bg-sage text-white text-sm font-bold transition shadow-sm">
                   Xem Portfolio Thực Tế
-                  <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">↗</span>
+                  <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">↓</span>
                 </a>
                 <a href="#experience" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-cream-soft hover:bg-sage-light text-sage-dark text-sm font-bold transition">
                   Hành Trình 11 Năm
@@ -200,6 +216,39 @@
               <span class="text-sage">•</span>
               <span>SYSLYTIC (EEzZ APP)</span>
             </div>
+          </div>
+        </section>
+
+        <!-- INTEGRATED PORTFOLIO SHOWCASE (HOSTED DIRECTLY ON GITHUB) -->
+        <section id="portfolio" class="bento-card p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-bold mb-2">
+                ● Selected Works • Portfolio Trực Tuyến
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-black text-sage-ink">Dự Án Tiêu Biểu</h2>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex flex-wrap gap-2" id="portfolioFilters">
+              <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                Tất Cả (06)
+              </button>
+              <button data-filter="key-visual" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                Key Visual & POSM
+              </button>
+              <button data-filter="video-motion" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                Video & Motion
+              </button>
+              <button data-filter="ui-ux" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                UI/UX App & Branding
+              </button>
+            </div>
+          </div>
+
+          <!-- Portfolio Grid -->
+          <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Project cards rendered dynamically via JS for easy editing & lightbox preview -->
           </div>
         </section>
 
@@ -441,20 +490,20 @@
             </div>
           </div>
 
-          <!-- Education Box -->
-<div class="rounded-2xl bg-sage-light/70 border border-sage/30 p-5 space-y-4">
-  <span class="block text-xs font-mono uppercase font-bold text-sage-dark">Học Vấn & Chứng Chỉ Chuyên Ngành</span>
+          <!-- Education & Certificates Box -->
+          <div class="rounded-2xl bg-sage-light/70 border border-sage/30 p-5 space-y-4">
+            <span class="block text-xs font-mono uppercase font-bold text-sage-dark">Học Vấn & Chứng Chỉ Chuyên Ngành</span>
 
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3.5 border-b border-sage/20">
-    <h4 class="text-base font-extrabold text-sage-ink">Arena Multimedia — Advanced Diploma in Multimedia (ADIM)</h4>
-    <span class="font-mono text-xs font-bold px-3 py-1.5 rounded-full bg-white text-sage-dark w-fit shrink-0">Tốt nghiệp 10/2012 • Cử nhân</span>
-  </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3.5 border-b border-sage/20">
+              <h4 class="text-base font-extrabold text-sage-ink">Arena Multimedia — Advanced Diploma in Multimedia (ADIM)</h4>
+              <span class="font-mono text-xs font-bold px-3 py-1.5 rounded-full bg-white text-sage-dark w-fit shrink-0">Tốt nghiệp 10/2012 • Cử nhân</span>
+            </div>
 
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-    <h4 class="text-base font-extrabold text-sage-ink">Vinalink Media — Digital Marketing Plan</h4>
-    <span class="font-mono text-xs font-bold px-3 py-1.5 rounded-full bg-white text-sage-dark w-fit shrink-0">Tốt nghiệp 07/2025 • Chứng chỉ</span>
-  </div>
-</div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <h4 class="text-base font-extrabold text-sage-ink">Vinalink Media — Digital Marketing Plan</h4>
+              <span class="font-mono text-xs font-bold px-3 py-1.5 rounded-full bg-white text-sage-dark w-fit shrink-0">Tốt nghiệp 07/2025 • Chứng chỉ</span>
+            </div>
+          </div>
         </section>
 
         <!-- CONTACT & PERSONAL DETAILS -->
@@ -495,7 +544,7 @@
               </span>
               <h3 class="text-2xl sm:text-3xl font-black leading-tight">Sẵn sàng đồng hành cùng dự án tiếp theo của bạn.</h3>
               <p class="text-sm text-white/80 mt-3 leading-relaxed">
-                Liên hệ trực tiếp qua điện thoại, email hoặc xem toàn bộ các dự án Key Visual, Video & Branding đã thực hiện tại Portfolio cá nhân.
+                Liên hệ trực tiếp qua điện thoại, email hoặc bấm vào từng dự án bên trên để xem chi tiết các ấn phẩm Key Visual, Video & Branding đã thực hiện.
               </p>
             </div>
 
@@ -508,9 +557,9 @@
                 <span class="font-medium">Email</span>
                 <span class="font-mono font-bold">nnhoangnhat@gmail.com</span>
               </a>
-              <a href="https://nnhoangnhat.myportfolio.com" target="_blank" rel="noopener" class="flex items-center justify-between p-3.5 rounded-xl bg-cream-bg text-sage-dark hover:bg-white font-extrabold transition">
-                <span>nnhoangnhat.myportfolio.com</span>
-                <span>Mở Portfolio ↗</span>
+              <a href="#portfolio" class="flex items-center justify-between p-3.5 rounded-xl bg-cream-bg text-sage-dark hover:bg-white font-extrabold transition">
+                <span>Bộ Sưu Tập Dự Án Trên Trang</span>
+                <span>Xem Ngay ↑</span>
               </a>
             </div>
           </div>
@@ -520,7 +569,275 @@
     </div>
   </div>
 
+  <!-- LIGHTBOX MODAL FOR PROJECT DETAILS -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-sage-ink/80 backdrop-blur-sm p-4 sm:p-6">
+    <div class="bg-cream-card border border-sage-border rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <!-- Modal Header -->
+      <div class="sticky top-0 z-10 bg-cream-card/95 backdrop-blur-md px-6 py-4 border-b border-sage-border flex items-center justify-between gap-4">
+        <div>
+          <span id="modalCategory" class="font-mono text-xs font-bold text-sage-dark uppercase"></span>
+          <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-sage-ink"></h3>
+        </div>
+        <button id="closeModalBtn" class="w-10 h-10 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-ink font-bold transition shrink-0">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-6">
+        <!-- Main Preview Image / Video Frame -->
+        <div id="modalMediaWrapper" class="rounded-2xl overflow-hidden border border-sage-border bg-sage-light/50">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Project Description & Metadata -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 space-y-3">
+            <h4 class="text-sm font-extrabold uppercase tracking-wider text-sage-dark">Mô Tả Dự Án & Vai Trò</h4>
+            <p id="modalDesc" class="text-sm text-sage-muted leading-relaxed"></p>
+          </div>
+          <div class="rounded-2xl bg-cream-bg border border-sage-border p-4 space-y-3 text-xs">
+            <div>
+              <span class="text-sage-muted block">Khách hàng / Thương hiệu</span>
+              <strong id="modalClient" class="text-sage-ink text-sm"></strong>
+            </div>
+            <div>
+              <span class="text-sage-muted block">Vai trò đảm nhiệm</span>
+              <strong id="modalRole" class="text-sage-ink text-sm"></strong>
+            </div>
+            <div>
+              <span class="text-sage-muted block">Công cụ thực hiện</span>
+              <div id="modalTools" class="flex flex-wrap gap-1.5 mt-1"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Sub-images -->
+        <div id="modalGallery" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // =========================================================================
+    // DANH SÁCH DỰ ÁN PORTFOLIO (BẠN CHỈ CẦN THAY TÊN FILE ẢNH TRONG THƯ MỤC projects/)
+    // =========================================================================
+    const PORTFOLIO_PROJECTS = [
+      {
+        id: 'king-coffee-kv',
+        category: 'key-visual',
+        categoryLabel: 'Key Visual & POSM',
+        title: 'King Coffee — Chiến Dịch Key Visual & Sản Phẩm Mới',
+        client: 'TNI Corporation / King Coffee',
+        role: 'Multimedia Designer & Key Visual Artist',
+        tools: ['Photoshop', 'Illustrator', '3D Mockup'],
+        cover: 'projects/project-01.jpg',
+        gallery: ['projects/project-01.jpg'],
+        accentBg: 'from-[#8B261D] to-[#4A120D]',
+        badge: 'KEY VISUAL',
+        description: 'Thiết kế hệ thống Key Visual chủ đạo cho các dòng sản phẩm chiến lược của King Coffee (Tết Sum Vầy, Cà Phê Sữa Đá X3, Trà Oolong, Món Ngon Tròn Vị) triển khai đồng bộ trên Digital Social Media và ấn phẩm POSM điểm bán toàn quốc.'
+      },
+      {
+        id: 'milano-nail-spa',
+        category: 'video-motion',
+        categoryLabel: 'Video & Motion',
+        title: 'Milano Nail Spa — Art Direction & Social Video Reels',
+        client: 'Milano Nail Spa (Dallas, US)',
+        role: 'Creative Team Leader',
+        tools: ['Premiere Pro', 'After Effects', 'AI Video'],
+        cover: 'projects/project-02.jpg',
+        gallery: ['projects/project-02.jpg'],
+        accentBg: 'from-[#4D6D57] to-[#2B4032]',
+        badge: 'ART DIRECTION',
+        description: 'Định hướng nghệ thuật, xây dựng concept quay dựng và quản lý đội ngũ sáng tạo sản xuất chuỗi video ngắn (Reels/TikTok), Key Visual khuyến mãi theo mùa cho hệ thống salon tại thị trường Mỹ.'
+      },
+      {
+        id: 'tni-ceo-events',
+        category: 'video-motion',
+        categoryLabel: 'Video & Motion',
+        title: 'TNI Corporation — Event Filming & Corporate Motion',
+        client: 'TNI Corporation',
+        role: 'Cameraman, Flycam & Video Editor',
+        tools: ['Premiere Pro', 'After Effects', 'Flycam'],
+        cover: 'projects/project-03.jpg',
+        gallery: ['projects/project-03.jpg'],
+        accentBg: 'from-[#6A8B74] to-[#3B5242]',
+        badge: 'EVENT & MOTION',
+        description: 'Trực tiếp quay phim, chụp ảnh và dựng video hậu kỳ cho các sự kiện truyền thông cấp cao của CEO Lê Hoàng Diệp Thảo cùng các hội nghị ra mắt sản phẩm lớn của tập đoàn.'
+      },
+      {
+        id: 'eezz-salon-app',
+        category: 'ui-ux',
+        categoryLabel: 'UI/UX App & Branding',
+        title: 'EEzZ — Hệ Thống App Quản Lý Salon & Nail US',
+        client: 'Syslytic',
+        role: 'UI/UX Designer & Motion Graphics',
+        tools: ['Illustrator', 'Photoshop', 'After Effects'],
+        cover: 'projects/project-04.jpg',
+        gallery: ['projects/project-04.jpg'],
+        accentBg: 'from-[#365341] to-[#1E2B24]',
+        badge: 'UI/UX MOBILE APP',
+        description: 'Thiết kế giao diện người dùng (UI/UX) cho hệ sinh thái ứng dụng đặt lịch, quản lý thợ và thanh toán POS chuyên biệt cho ngành Nail & Spa tại Mỹ, kèm video Motion hướng dẫn tính năng.'
+      },
+      {
+        id: 'viet-khoi-land',
+        category: 'key-visual',
+        categoryLabel: 'Key Visual & POSM',
+        title: 'Việt Khởi Land — Bộ Ấn Phẩm Bất Động Sản & Sự Kiện',
+        client: 'Việt Khởi Land',
+        role: 'Chuyên Viên Thiết Kế Truyền Thông',
+        tools: ['Illustrator', 'Photoshop', 'Premiere Pro'],
+        cover: 'projects/project-05.jpg',
+        gallery: ['projects/project-05.jpg'],
+        accentBg: 'from-[#5B7A65] to-[#34493B]',
+        badge: 'REAL ESTATE',
+        description: 'Thiết kế trọn bộ ấn phẩm bán hàng dự án bất động sản bao gồm Brochure, Catalogue, Standee, Banner Digital và quay dựng phim tư liệu các lễ mở bán dự án.'
+      },
+      {
+        id: 'ai-creative-lab',
+        category: 'video-motion',
+        categoryLabel: 'Video & Motion',
+        title: 'AI Video Production & 3D Commercial Visualization',
+        client: 'Creative R&D / Commercial Projects',
+        role: 'AI Video Creator & 3D Generalist',
+        tools: ['AI Video', 'After Effects', '3D Visualization'],
+        cover: 'projects/project-06.jpg',
+        gallery: ['projects/project-06.jpg'],
+        accentBg: 'from-[#4D6D57] to-[#1E2B24]',
+        badge: 'AI PRODUCTION',
+        description: 'Ứng dụng quy trình AI Video Generation kết hợp hậu kỳ After Effects và dựng phối cảnh 3D để rút ngắn thời gian sản xuất TVC quảng cáo sản phẩm với hiệu ứng thị giác ấn tượng.'
+      }
+    ];
+
+    const gridEl = document.getElementById('portfolioGrid');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    function renderProjects(filter = 'all') {
+      const items = filter === 'all'
+        ? PORTFOLIO_PROJECTS
+        : PORTFOLIO_PROJECTS.filter(p => p.category === filter);
+
+      gridEl.innerHTML = items.map((proj, idx) => `
+        <article onclick="openProjectModal('${proj.id}')" class="project-card cursor-pointer rounded-2xl bg-cream-bg border border-sage-border overflow-hidden flex flex-col justify-between group">
+          <div>
+            <!-- Thumbnail Box (Auto-fallback to stylish cover if image file not yet uploaded) -->
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br ${proj.accentBg}">
+              <img
+                src="${proj.cover}"
+                alt="${proj.title}"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+              <div style="display:none" class="w-full h-full p-5 flex-col justify-between text-white">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-[10px] tracking-widest uppercase px-2.5 py-1 rounded bg-white/15">${proj.badge}</span>
+                  <span class="font-mono text-xs text-white/60">0${idx + 1}</span>
+                </div>
+                <div>
+                  <p class="text-[11px] text-white/75 font-medium">${proj.client}</p>
+                  <h4 class="text-base font-extrabold leading-snug mt-0.5 line-clamp-2">${proj.title}</h4>
+                </div>
+              </div>
+              <span class="absolute top-3 right-3 w-8 h-8 rounded-full bg-cream-card/90 text-sage-dark flex items-center justify-center text-xs font-bold opacity-0 group-hover:opacity-100 transition shadow">
+                ↗
+              </span>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-4 space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-mono font-bold text-sage-dark">${proj.categoryLabel}</span>
+                <span class="text-[11px] text-sage-muted truncate max-w-[140px]">${proj.client}</span>
+              </div>
+              <h3 class="text-base font-extrabold text-sage-ink group-hover:text-sage-dark transition line-clamp-2">
+                ${proj.title}
+              </h3>
+              <p class="text-xs text-sage-muted line-clamp-2 leading-relaxed">
+                ${proj.description}
+              </p>
+            </div>
+          </div>
+
+          <div class="px-4 pb-4 pt-2 flex flex-wrap gap-1.5">
+            ${proj.tools.map(t => `<span class="px-2 py-0.5 rounded-md bg-white border border-sage-border text-[10px] font-semibold text-sage-dark">${t}</span>`).join('')}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    // Modal Logic
+    const modal = document.getElementById('projectModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    function openProjectModal(projectId) {
+      const proj = PORTFOLIO_PROJECTS.find(p => p.id === projectId);
+      if (!proj) return;
+
+      document.getElementById('modalCategory').textContent = proj.categoryLabel;
+      document.getElementById('modalTitle').textContent = proj.title;
+      document.getElementById('modalDesc').textContent = proj.description;
+      document.getElementById('modalClient').textContent = proj.client;
+      document.getElementById('modalRole').textContent = proj.role;
+      document.getElementById('modalTools').innerHTML = proj.tools.map(t =>
+        `<span class="px-2.5 py-1 rounded-full bg-sage-light text-sage-dark font-bold text-[11px]">${t}</span>`
+      ).join('');
+
+      const mediaWrapper = document.getElementById('modalMediaWrapper');
+      mediaWrapper.innerHTML = `
+        <div class="relative min-h-[260px] bg-gradient-to-br ${proj.accentBg} flex items-center justify-center">
+          <img
+            src="${proj.cover}"
+            alt="${proj.title}"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            class="w-full max-h-[520px] object-contain"
+          />
+          <div style="display:none" class="p-10 text-center text-white space-y-2">
+            <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15">${proj.badge}</span>
+            <h4 class="text-2xl font-black pt-2">${proj.title}</h4>
+            <p class="text-xs text-white/75 max-w-md mx-auto">Bạn có thể chép file ảnh thực tế vào thư mục <code>projects/${proj.cover.split('/')[1]}</code> để hiển thị hình ảnh đầy đủ tại đây.</p>
+          </div>
+        </div>
+      `;
+
+      const galleryEl = document.getElementById('modalGallery');
+      if (proj.gallery && proj.gallery.length > 1) {
+        galleryEl.innerHTML = proj.gallery.slice(1).map(imgSrc => `
+          <img src="${imgSrc}" onerror="this.style.display='none'" class="w-full rounded-xl border border-sage-border object-cover" />
+        `).join('');
+      } else {
+        galleryEl.innerHTML = '';
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Initial render
+    renderProjects('all');
+
     // Active navigation highlight on scroll
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-item');
