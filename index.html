@@ -81,6 +81,55 @@
       border-color: #6A8B74;
       box-shadow: 0 16px 32px -12px rgba(77, 109, 87, 0.2);
     }
+
+    /* 3D Spin & Rise-to-Center Animations */
+    .stage-3d {
+      perspective: 1400px;
+    }
+    @keyframes spin3dFromRight {
+      0% {
+        opacity: 0.25;
+        filter: blur(8px);
+        transform: translate3d(130px, 55px, -180px) scale(0.72) rotateY(-360deg);
+      }
+      55% {
+        opacity: 0.9;
+        filter: blur(2px);
+        transform: translate3d(20px, 10px, 30px) scale(0.95) rotateY(-110deg);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
+      }
+    }
+    @keyframes spin3dFromLeft {
+      0% {
+        opacity: 0.25;
+        filter: blur(8px);
+        transform: translate3d(-130px, 55px, -180px) scale(0.72) rotateY(360deg);
+      }
+      55% {
+        opacity: 0.9;
+        filter: blur(2px);
+        transform: translate3d(-20px, 10px, 30px) scale(0.95) rotateY(110deg);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
+      }
+    }
+    .animate-spin-3d-next {
+      transform-style: preserve-3d;
+      backface-visibility: visible;
+      animation: spin3dFromRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .animate-spin-3d-prev {
+      transform-style: preserve-3d;
+      backface-visibility: visible;
+      animation: spin3dFromLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-sage selection:text-white">
@@ -555,7 +604,7 @@
     </div>
   </div>
 
-  <!-- LAYERED OVERLAPPING COVERFLOW LIGHTBOX (CENTER ALWAYS CENTERED + SIDE LAYERS 1/5 TUCKED BEHIND) -->
+  <!-- 3D SPIN & RISE-TO-CENTER LAYERED COVERFLOW LIGHTBOX -->
   <div id="projectModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-[#1E2B24]/55 backdrop-blur-xl transition-all duration-300">
     <button id="closeModalBtn" title="Đóng (ESC)" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-40 w-10 h-10 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center font-bold transition backdrop-blur-md shadow-lg">
       ✕
@@ -565,12 +614,11 @@
       
       <h2 id="modalCategory" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] uppercase tracking-widest text-center"></h2>
 
-      <!-- 3-Layer Overlapping Coverflow Stage -->
+      <!-- 3-Layer Overlapping Coverflow Stage with 3D Perspective -->
       <div class="w-full space-y-5">
-        <div class="relative w-full flex items-center justify-center select-none py-2">
+        <div class="relative w-full flex items-center justify-center select-none py-2 stage-3d">
           
-          <!-- Fixed-height centered stage where active slide stays strictly centered and side slides tuck 1/5 behind it -->
-          <div id="modalMediaStage" class="w-full h-[300px] sm:h-[430px] lg:h-[500px] relative flex items-center justify-center transition-all duration-300 ease-out overflow-visible">
+          <div id="modalMediaStage" class="w-full h-[300px] sm:h-[430px] lg:h-[500px] relative flex items-center justify-center overflow-visible">
             <!-- Left / Center / Right Slides Injected Here -->
           </div>
 
@@ -751,9 +799,7 @@
     });
 
     // =========================================================================
-    // LAYERED OVERLAPPING 3-PANEL COVERFLOW LIGHTBOX LOGIC
-    // - Active slide: Strictly dead-center (z-30, h-full) even when left/right images have different aspect ratios
-    // - Left & Right slides: Lower z-index (z-10) tucked 1/5 behind the center slide (negative overlap margin) & shifted down 1/5
+    // 3D SPIN & RISE-TO-CENTER COVERFLOW LIGHTBOX LOGIC
     // =========================================================================
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -779,7 +825,7 @@
         `<span class="px-3 py-1 rounded-full bg-[#FAF8F5]/75 text-sage-dark font-bold text-[11px] border border-white/40">${t}</span>`
       ).join('');
 
-      updateSlideView(false);
+      updateSlideView('none');
 
       modal.classList.remove('hidden');
       modal.classList.add('block');
@@ -789,7 +835,7 @@
     function buildInnerImageHtml(slideObj, slideIdx, isActive) {
       const imgClasses = isActive
         ? 'h-full w-auto max-w-[84vw] sm:max-w-[54vw] lg:max-w-[48vw] object-contain rounded-xl shadow-[0_26px_65px_rgba(0,0,0,0.65)]'
-        : 'h-full w-auto max-w-[30vw] sm:max-w-[26vw] lg:max-w-[25vw] object-contain rounded-xl shadow-xl';
+        : 'h-full w-auto max-w-[30vw] sm:max-w-[26vw] lg:max-w-[25vw] object-contain rounded-xl shadow-xl shrink-0';
 
       return `
         <img
@@ -798,7 +844,7 @@
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           class="${imgClasses}"
         />
-        <div style="display:none" class="${isActive ? 'w-[280px] sm:w-[420px] h-full' : 'w-[170px] lg:w-[230px] h-full'} p-6 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl border border-white/20">
+        <div style="display:none" class="${isActive ? 'w-[280px] sm:w-[420px] h-full' : 'w-[170px] lg:w-[230px] h-full'} p-6 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl border border-white/20 shrink-0">
           <span class="font-mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-2">0${slideIdx + 1}</span>
           <h4 class="${isActive ? 'text-lg sm:text-2xl' : 'text-xs'} font-black line-clamp-3">${slideObj.caption}</h4>
           ${isActive ? `<p class="text-[11px] text-white/75 mt-2"><code>${slideObj.src}</code></p>` : ''}
@@ -806,7 +852,7 @@
       `;
     }
 
-    function updateSlideView(animate = true) {
+    function updateSlideView(direction = 'next') {
       if (!currentProject) return;
       const slides = currentProject.slides;
       const total = slides.length;
@@ -815,86 +861,81 @@
       const activeSlide = slides[currentSlideIndex];
       const stage = document.getElementById('modalMediaStage');
 
-      const renderContent = () => {
-        document.getElementById('modalSlideCaption').textContent = activeSlide.caption;
+      document.getElementById('modalSlideCaption').textContent = activeSlide.caption;
 
-        if (total === 1) {
-          stage.innerHTML = `
-            <div class="relative z-30 h-full flex items-center justify-center">
-              ${buildInnerImageHtml(activeSlide, 0, true)}
-            </div>
-          `;
-        } else {
-          // Using an inline-flex cluster centered in the stage, where Prev & Next are anchored
-          // right behind the left/right edges of the Center layer (1/5 tucked underneath via -mr/-ml overlap)
-          stage.innerHTML = `
-            <div class="relative h-full flex items-center justify-center">
-              <!-- Left Layer (Underneath Center Layer, 1/5 tucked behind, shifted down 1/5) -->
+      // Apply 3D 360-degree spin & rise animation to the incoming center card
+      const spinClass = direction === 'next'
+        ? 'animate-spin-3d-next'
+        : direction === 'prev'
+          ? 'animate-spin-3d-prev'
+          : '';
+
+      if (total === 1) {
+        stage.innerHTML = `
+          <div class="relative z-30 h-full flex items-center justify-center ${spinClass}">
+            ${buildInnerImageHtml(activeSlide, 0, true)}
+          </div>
+        `;
+      } else {
+        stage.innerHTML = `
+          <div class="relative w-full h-full flex items-center justify-center">
+            <!-- Left Zero-Width Anchor -->
+            <div class="hidden sm:block relative w-0 h-[72%] translate-y-[14%] z-10">
               <div
-                onclick="goToSlide(${prevIdx})"
+                onclick="goToSlide(${prevIdx}, 'prev')"
                 title="Xem ${slides[prevIdx].caption}"
-                class="hidden sm:flex relative z-10 h-[72%] translate-y-[14%] -mr-10 md:-mr-14 lg:-mr-20 opacity-70 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer items-center justify-center shrink-0 transition-all duration-300"
+                class="absolute right-0 top-0 h-full translate-x-[22%] flex items-center justify-end opacity-70 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer transition-all duration-300"
               >
                 ${buildInnerImageHtml(slides[prevIdx], prevIdx, false)}
               </div>
+            </div>
 
-              <!-- Center Active Layer (Always Strictly Centered, Top Layer z-30) -->
-              <div class="relative z-30 h-full flex items-center justify-center shrink-0 transition-all duration-300">
-                ${buildInnerImageHtml(activeSlide, currentSlideIndex, true)}
-              </div>
+            <!-- Center Active Layer with 3D 360° Spin Rise Animation -->
+            <div class="relative z-30 h-full flex items-center justify-center shrink-0 ${spinClass}">
+              ${buildInnerImageHtml(activeSlide, currentSlideIndex, true)}
+            </div>
 
-              <!-- Right Layer (Underneath Center Layer, 1/5 tucked behind, shifted down 1/5) -->
+            <!-- Right Zero-Width Anchor -->
+            <div class="hidden sm:block relative w-0 h-[72%] translate-y-[14%] z-10">
               <div
-                onclick="goToSlide(${nextIdx})"
+                onclick="goToSlide(${nextIdx}, 'next')"
                 title="Xem ${slides[nextIdx].caption}"
-                class="hidden sm:flex relative z-10 h-[72%] translate-y-[14%] -ml-10 md:-ml-14 lg:-ml-20 opacity-70 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer items-center justify-center shrink-0 transition-all duration-300"
+                class="absolute left-0 top-0 h-full -translate-x-[22%] flex items-center justify-start opacity-70 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer transition-all duration-300"
               >
                 ${buildInnerImageHtml(slides[nextIdx], nextIdx, false)}
               </div>
             </div>
-          `;
-        }
-
-        const dotsEl = document.getElementById('modalDots');
-        dotsEl.innerHTML = slides.map((_, i) => `
-          <button onclick="goToSlide(${i})" class="h-1.5 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-white shadow' : 'w-1.5 bg-white/45 hover:bg-white/80'}"></button>
-        `).join('');
-      };
-
-      if (!animate) {
-        stage.style.opacity = '1';
-        stage.style.filter = 'blur(0px)';
-        renderContent();
-        return;
+          </div>
+        `;
       }
 
-      isTransitioning = true;
-      stage.style.opacity = '0.35';
-      stage.style.filter = 'blur(10px)';
+      const dotsEl = document.getElementById('modalDots');
+      dotsEl.innerHTML = slides.map((_, i) => {
+        const dir = i > currentSlideIndex ? 'next' : 'prev';
+        return `<button onclick="goToSlide(${i}, '${dir}')" class="h-1.5 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-white shadow' : 'w-1.5 bg-white/45 hover:bg-white/80'}"></button>`;
+      }).join('');
 
-      setTimeout(() => {
-        renderContent();
-        requestAnimationFrame(() => {
-          stage.style.opacity = '1';
-          stage.style.filter = 'blur(0px)';
-          setTimeout(() => {
-            isTransitioning = false;
-          }, 250);
-        });
-      }, 200);
+      if (direction !== 'none') {
+        isTransitioning = true;
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 620);
+      }
     }
 
-    function goToSlide(index) {
+    function goToSlide(index, forcedDir = null) {
       if (!currentProject || isTransitioning) return;
       const total = currentProject.slides.length;
       const nextIdx = (index + total) % total;
       if (nextIdx === currentSlideIndex && total > 1) return;
+
+      const direction = forcedDir || (index >= currentSlideIndex ? 'next' : 'prev');
       currentSlideIndex = nextIdx;
-      updateSlideView(true);
+      updateSlideView(direction);
     }
 
-    prevSlideBtn.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
-    nextSlideBtn.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
+    prevSlideBtn.addEventListener('click', () => goToSlide(currentSlideIndex - 1, 'prev'));
+    nextSlideBtn.addEventListener('click', () => goToSlide(currentSlideIndex + 1, 'next'));
 
     function closeModal() {
       modal.classList.add('hidden');
@@ -910,8 +951,8 @@
     document.addEventListener('keydown', (e) => {
       if (!currentProject) return;
       if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowLeft') goToSlide(currentSlideIndex - 1);
-      if (e.key === 'ArrowRight') goToSlide(currentSlideIndex + 1);
+      if (e.key === 'ArrowLeft') goToSlide(currentSlideIndex - 1, 'prev');
+      if (e.key === 'ArrowRight') goToSlide(currentSlideIndex + 1, 'next');
     });
 
     // Initial render
