@@ -555,45 +555,45 @@
     </div>
   </div>
 
-  <!-- COVERFLOW 3-PANEL SLIDESHOW LIGHTBOX (PREV 70% BLUR | ACTIVE CENTER | NEXT 70% BLUR) -->
+  <!-- STEPPED COVERFLOW LIGHTBOX (FIXED CENTER HEIGHT + TIGHT FLANKING IMAGES OFFSET DOWN 1/5 + AUTO-EXPANDING KV BOX) -->
   <div id="projectModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-[#1E2B24]/55 backdrop-blur-xl transition-all duration-300">
     <!-- Floating Close Button (Top Right) -->
     <button id="closeModalBtn" title="Đóng (ESC)" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-30 w-10 h-10 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center font-bold transition backdrop-blur-md shadow-lg">
       ✕
     </button>
 
-    <div class="min-h-screen w-full max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-10 flex flex-col items-center justify-center space-y-6">
+    <div class="min-h-screen w-full max-w-[1440px] mx-auto px-4 sm:px-8 py-8 sm:py-10 flex flex-col items-center justify-center space-y-6">
       
       <!-- Large Centered Category Title -->
       <h2 id="modalCategory" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] uppercase tracking-widest text-center"></h2>
 
-      <!-- 3-Panel Coverflow Stage (Left Blurred 70% | Active Center 100% | Right Blurred 70%) -->
-      <div class="w-full space-y-4">
+      <!-- 3-Panel Stepped Coverflow Stage -->
+      <div class="w-full space-y-5">
         <div class="relative w-full flex items-center justify-center select-none py-2">
           
-          <!-- 3-Column Coverflow Track -->
-          <div id="modalMediaStage" class="w-full h-[320px] sm:h-[450px] lg:h-[520px] flex items-center justify-center gap-3 sm:gap-6 lg:gap-8 relative transition-all duration-300 ease-out overflow-visible">
+          <!-- Center-locked Height Stage (Fixed height so center image always fills exact height; side images sit close & 1/5 lower) -->
+          <div id="modalMediaStage" class="w-full h-[300px] sm:h-[430px] lg:h-[500px] flex items-center justify-center gap-2 sm:gap-3.5 relative transition-all duration-300 ease-out overflow-visible">
             <!-- Left / Center / Right Slides Injected Here -->
           </div>
 
           <!-- Prev Arrow -->
-          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
+          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
             ‹
           </button>
 
           <!-- Next Arrow -->
-          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
+          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
             ›
           </button>
         </div>
 
         <!-- Minimal Dot Indicators -->
-        <div id="modalDots" class="flex items-center justify-center gap-2"></div>
+        <div id="modalDots" class="flex items-center justify-center gap-2 pt-2"></div>
       </div>
 
-      <!-- Centered KV Title & Subtitle Inside Rounded Cream Box (25% Opacity) -->
-      <div class="w-full max-w-2xl mx-auto rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 px-6 py-4 text-center shadow-sm">
-        <h3 id="modalSlideCaption" class="text-lg sm:text-2xl font-black text-white drop-shadow-[0_1px_6px_rgba(30,43,36,0.5)] tracking-tight"></h3>
+      <!-- Auto-Expanding KV Title Box (w-fit so single line never wraps prematurely, expands horizontally with text) -->
+      <div class="w-fit max-w-[94vw] mx-auto rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 px-6 sm:px-9 py-4 text-center shadow-sm">
+        <h3 id="modalSlideCaption" class="text-base sm:text-xl lg:text-2xl font-black text-white drop-shadow-[0_1px_6px_rgba(30,43,36,0.5)] tracking-tight sm:whitespace-nowrap"></h3>
         <p id="modalProjectSubtitle" class="text-xs sm:text-sm font-semibold text-white/90 drop-shadow-[0_1px_4px_rgba(30,43,36,0.45)] mt-1"></p>
       </div>
 
@@ -768,7 +768,9 @@
     });
 
     // =========================================================================
-    // 3-PANEL COVERFLOW LIGHTBOX LOGIC (PREV 70% BLUR | ACTIVE CENTER | NEXT 70% BLUR)
+    // STEPPED 3-PANEL COVERFLOW LIGHTBOX LOGIC
+    // - Center image: Fixed exact stage height (h-full) regardless of landscape/portrait
+    // - Side images: Snug right next to center image, 72% height, shifted down ~1/5 (translate-y-[14%])
     // =========================================================================
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -803,9 +805,16 @@
 
     function buildSlideCard(slideObj, slideIdx, role) {
       const isActive = role === 'active';
+
+      // Center image has exact fixed height matching stage (h-full) so both landscape & portrait share identical height
+      // Side images sit tightly beside center (w-auto shrink-0) at 72% height (h-[72%]) and shifted down ~1/5 (translate-y-[14%])
       const wrapperClasses = isActive
-        ? 'z-20 w-[78%] sm:w-[48%] lg:w-[44%] h-full scale-100 opacity-100 blur-0 transition-all duration-300 flex items-center justify-center'
-        : 'hidden sm:flex z-10 w-[26%] lg:w-[27%] h-full scale-[0.72] opacity-65 blur-[2.5px] hover:opacity-90 hover:blur-[1px] hover:scale-[0.76] cursor-pointer transition-all duration-300 items-center justify-center';
+        ? 'z-20 h-full max-w-[86vw] sm:max-w-[62vw] lg:max-w-[56vw] flex items-center justify-center shrink-0 transition-all duration-300'
+        : 'hidden sm:flex z-10 h-[72%] max-w-[22vw] lg:max-w-[24vw] translate-y-[14%] opacity-65 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer items-center justify-center shrink-0 transition-all duration-300';
+
+      const imgClasses = isActive
+        ? 'h-full w-auto max-w-full object-contain rounded-xl shadow-[0_24px_60px_rgba(0,0,0,0.55)]'
+        : 'h-full w-auto max-w-full object-contain rounded-xl shadow-lg';
 
       const clickAttr = isActive ? '' : `onclick="goToSlide(${slideIdx})" title="Xem ${slideObj.caption}"`;
 
@@ -815,11 +824,11 @@
             src="${slideObj.src}"
             alt="${slideObj.caption}"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            class="max-w-full max-h-full object-contain rounded-xl ${isActive ? 'shadow-[0_24px_60px_rgba(0,0,0,0.55)]' : 'shadow-lg'}"
+            class="${imgClasses}"
           />
-          <div style="display:none" class="w-full h-[85%] p-6 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl border border-white/20">
+          <div style="display:none" class="${isActive ? 'w-[300px] sm:w-[440px] h-full' : 'w-[180px] lg:w-[240px] h-full'} p-6 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl border border-white/20">
             <span class="font-mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-2">0${slideIdx + 1}</span>
-            <h4 class="${isActive ? 'text-lg sm:text-2xl' : 'text-sm'} font-black line-clamp-3">${slideObj.caption}</h4>
+            <h4 class="${isActive ? 'text-lg sm:text-2xl' : 'text-xs'} font-black line-clamp-3">${slideObj.caption}</h4>
             ${isActive ? `<p class="text-[11px] text-white/75 mt-2"><code>${slideObj.src}</code></p>` : ''}
           </div>
         </div>
@@ -861,7 +870,6 @@
         return;
       }
 
-      // Blur + subtle fade out before rolling to next slide
       isTransitioning = true;
       stage.style.opacity = '0.35';
       stage.style.filter = 'blur(10px)';
