@@ -81,13 +81,6 @@
       border-color: #6A8B74;
       box-shadow: 0 16px 32px -12px rgba(77, 109, 87, 0.2);
     }
-    .thumb-strip::-webkit-scrollbar {
-      height: 4px;
-    }
-    .thumb-strip::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.45);
-      border-radius: 999px;
-    }
   </style>
 </head>
 <body class="antialiased selection:bg-sage selection:text-white">
@@ -562,44 +555,40 @@
     </div>
   </div>
 
-  <!-- FRAMELESS BLUR SLIDESHOW LIGHTBOX (NO OUTER BOX, NO IMAGE BACKDROP BOX, THUMBNAILS RIGHT UNDER MAIN IMAGE) -->
+  <!-- COVERFLOW 3-PANEL SLIDESHOW LIGHTBOX (PREV 70% BLUR | ACTIVE CENTER | NEXT 70% BLUR) -->
   <div id="projectModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-[#1E2B24]/55 backdrop-blur-xl transition-all duration-300">
     <!-- Floating Close Button (Top Right) -->
     <button id="closeModalBtn" title="Đóng (ESC)" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-30 w-10 h-10 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center font-bold transition backdrop-blur-md shadow-lg">
       ✕
     </button>
 
-    <div class="min-h-screen w-full max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-10 flex flex-col items-center justify-center space-y-5">
+    <div class="min-h-screen w-full max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-10 flex flex-col items-center justify-center space-y-6">
       
       <!-- Large Centered Category Title -->
       <h2 id="modalCategory" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] uppercase tracking-widest text-center"></h2>
 
-      <!-- Frameless Image Stage + Thumbnail Strip Directly Underneath -->
+      <!-- 3-Panel Coverflow Stage (Left Blurred 70% | Active Center 100% | Right Blurred 70%) -->
       <div class="w-full space-y-4">
-        
-        <!-- Main Image Area (No Backdrop Box) -->
-        <div class="relative w-full flex items-center justify-center select-none">
-          <div id="modalMediaStage" class="w-full h-[300px] sm:h-[440px] lg:h-[510px] flex items-center justify-center relative transition-all duration-300 ease-out">
-            <!-- Active Slide Injected Here -->
+        <div class="relative w-full flex items-center justify-center select-none py-2">
+          
+          <!-- 3-Column Coverflow Track -->
+          <div id="modalMediaStage" class="w-full h-[320px] sm:h-[450px] lg:h-[520px] flex items-center justify-center gap-3 sm:gap-6 lg:gap-8 relative transition-all duration-300 ease-out overflow-visible">
+            <!-- Left / Center / Right Slides Injected Here -->
           </div>
 
           <!-- Prev Arrow -->
-          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center shadow-lg transition font-black text-xl backdrop-blur-md">
+          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
             ‹
           </button>
 
           <!-- Next Arrow -->
-          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center shadow-lg transition font-black text-xl backdrop-blur-md">
+          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
             ›
           </button>
         </div>
 
-        <!-- Thumbnail Strip & Dots Directly Below Main Image (Inactive = 70% scale + subtle blur) -->
-        <div class="space-y-2.5">
-          <div id="modalDots" class="flex items-center justify-center gap-2"></div>
-          <div id="modalThumbnails" class="thumb-strip flex items-center justify-center gap-3 overflow-x-auto py-2 px-2"></div>
-        </div>
-
+        <!-- Minimal Dot Indicators -->
+        <div id="modalDots" class="flex items-center justify-center gap-2"></div>
       </div>
 
       <!-- Centered KV Title & Subtitle Inside Rounded Cream Box (25% Opacity) -->
@@ -779,7 +768,7 @@
     });
 
     // =========================================================================
-    // SLIDESHOW LIGHTBOX LOGIC (FRAMELESS + 70% BLURRED THUMBNAILS + BLUR TRANSITION)
+    // 3-PANEL COVERFLOW LIGHTBOX LOGIC (PREV 70% BLUR | ACTIVE CENTER | NEXT 70% BLUR)
     // =========================================================================
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -812,80 +801,81 @@
       document.body.style.overflow = 'hidden';
     }
 
+    function buildSlideCard(slideObj, slideIdx, role) {
+      const isActive = role === 'active';
+      const wrapperClasses = isActive
+        ? 'z-20 w-[78%] sm:w-[48%] lg:w-[44%] h-full scale-100 opacity-100 blur-0 transition-all duration-300 flex items-center justify-center'
+        : 'hidden sm:flex z-10 w-[26%] lg:w-[27%] h-full scale-[0.72] opacity-65 blur-[2.5px] hover:opacity-90 hover:blur-[1px] hover:scale-[0.76] cursor-pointer transition-all duration-300 items-center justify-center';
+
+      const clickAttr = isActive ? '' : `onclick="goToSlide(${slideIdx})" title="Xem ${slideObj.caption}"`;
+
+      return `
+        <div ${clickAttr} class="${wrapperClasses}">
+          <img
+            src="${slideObj.src}"
+            alt="${slideObj.caption}"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            class="max-w-full max-h-full object-contain rounded-xl ${isActive ? 'shadow-[0_24px_60px_rgba(0,0,0,0.55)]' : 'shadow-lg'}"
+          />
+          <div style="display:none" class="w-full h-[85%] p-6 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl border border-white/20">
+            <span class="font-mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-2">0${slideIdx + 1}</span>
+            <h4 class="${isActive ? 'text-lg sm:text-2xl' : 'text-sm'} font-black line-clamp-3">${slideObj.caption}</h4>
+            ${isActive ? `<p class="text-[11px] text-white/75 mt-2"><code>${slideObj.src}</code></p>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
     function updateSlideView(animate = true) {
       if (!currentProject) return;
       const slides = currentProject.slides;
-      const slide = slides[currentSlideIndex];
+      const total = slides.length;
+      const prevIdx = (currentSlideIndex - 1 + total) % total;
+      const nextIdx = (currentSlideIndex + 1) % total;
+      const activeSlide = slides[currentSlideIndex];
       const stage = document.getElementById('modalMediaStage');
 
       const renderContent = () => {
-        document.getElementById('modalSlideCaption').textContent = slide.caption;
-        stage.innerHTML = `
-          <img
-            src="${slide.src}"
-            alt="${slide.caption}"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            class="max-w-full max-h-full object-contain rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
-          />
-          <div style="display:none" class="w-full max-w-2xl h-full p-8 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl">
-            <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-3">${currentProject.categoryLabel} • 0${currentSlideIndex + 1}</span>
-            <h4 class="text-xl sm:text-2xl font-black max-w-lg">${slide.caption}</h4>
-            <p class="text-xs text-white/80 mt-2 max-w-md">
-              Chép file ảnh của bạn vào thư mục <code class="bg-black/25 px-1.5 py-0.5 rounded">${slide.src}</code> để hiển thị hình trình chiếu tại đây.
-            </p>
-          </div>
-        `;
+        document.getElementById('modalSlideCaption').textContent = activeSlide.caption;
 
-        // Render Dots
+        if (total === 1) {
+          stage.innerHTML = buildSlideCard(activeSlide, 0, 'active');
+        } else {
+          stage.innerHTML =
+            buildSlideCard(slides[prevIdx], prevIdx, 'prev') +
+            buildSlideCard(activeSlide, currentSlideIndex, 'active') +
+            buildSlideCard(slides[nextIdx], nextIdx, 'next');
+        }
+
+        // Render Minimal Dots
         const dotsEl = document.getElementById('modalDots');
         dotsEl.innerHTML = slides.map((_, i) => `
           <button onclick="goToSlide(${i})" class="h-1.5 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-white shadow' : 'w-1.5 bg-white/45 hover:bg-white/80'}"></button>
         `).join('');
-
-        // Render Thumbnails directly below main image:
-        // Active slide = 100% scale & sharp; Unvisited/passed slides = 70% scale (scale-[0.7]) & subtle blur (blur-[1.5px])
-        const thumbsEl = document.getElementById('modalThumbnails');
-        thumbsEl.innerHTML = slides.map((s, i) => {
-          const isActive = i === currentSlideIndex;
-          const stateClasses = isActive
-            ? 'scale-100 opacity-100 blur-0 border-white ring-2 ring-white/60 shadow-lg z-10'
-            : 'scale-[0.70] opacity-70 blur-[1.5px] border-white/30 hover:opacity-95 hover:blur-0 hover:scale-[0.82]';
-          return `
-            <button onclick="goToSlide(${i})" class="relative w-24 h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 shrink-0 ${stateClasses}">
-              <img src="${s.src}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-cover" />
-              <div style="display:none" class="w-full h-full bg-sage-dark text-white font-mono text-xs font-bold items-center justify-center">
-                0${i + 1}
-              </div>
-            </button>
-          `;
-        }).join('');
       };
 
       if (!animate) {
         stage.style.opacity = '1';
         stage.style.filter = 'blur(0px)';
-        stage.style.transform = 'scale(1)';
         renderContent();
         return;
       }
 
-      // Blur + subtle fade out before switching to next slide
+      // Blur + subtle fade out before rolling to next slide
       isTransitioning = true;
-      stage.style.opacity = '0.25';
-      stage.style.filter = 'blur(12px)';
-      stage.style.transform = 'scale(0.985)';
+      stage.style.opacity = '0.35';
+      stage.style.filter = 'blur(10px)';
 
       setTimeout(() => {
         renderContent();
         requestAnimationFrame(() => {
           stage.style.opacity = '1';
           stage.style.filter = 'blur(0px)';
-          stage.style.transform = 'scale(1)';
           setTimeout(() => {
             isTransitioning = false;
-          }, 260);
+          }, 250);
         });
-      }, 220);
+      }, 200);
     }
 
     function goToSlide(index) {
