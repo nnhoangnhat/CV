@@ -81,7 +81,6 @@
       border-color: #6A8B74;
       box-shadow: 0 16px 32px -12px rgba(77, 109, 87, 0.2);
     }
-    /* Custom scrollbar for thumbnail strip */
     .thumb-strip::-webkit-scrollbar {
       height: 5px;
     }
@@ -563,45 +562,43 @@
     </div>
   </div>
 
-  <!-- SLIDESHOW ALBUM MODAL (MATCHING BRAND CREAM & SAGE THEME) -->
-  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-sage-ink/80 backdrop-blur-md p-3 sm:p-6">
-    <div class="bg-cream-card border-2 border-sage-border rounded-3xl max-w-5xl w-full max-h-[94vh] overflow-y-auto shadow-2xl flex flex-col">
+  <!-- SLIDESHOW ALBUM MODAL (TRANSPARENT BLUR OVERLAY + CREAM 25% BOXES + BLUR TRANSITION) -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#1E2B24]/45 backdrop-blur-xl p-3 sm:p-6 transition-all duration-300">
+    <div class="bg-[#FAF8F5]/25 backdrop-blur-2xl border border-white/40 rounded-3xl max-w-5xl w-full max-h-[94vh] overflow-y-auto shadow-[0_24px_60px_-15px_rgba(30,43,36,0.45)] flex flex-col">
       
-      <!-- Top Bar -->
-      <div class="px-5 sm:px-7 py-4 border-b border-sage-border flex items-center justify-between gap-4 bg-cream-card sticky top-0 z-20">
-        <div class="flex items-center gap-3">
-          <span id="modalCategory" class="px-3 py-1 rounded-full bg-sage-light text-sage-dark font-mono text-xs font-bold uppercase"></span>
-          <span id="modalSlideCounter" class="font-mono text-xs font-bold text-sage-muted"></span>
-        </div>
-        <button id="closeModalBtn" title="Đóng (ESC)" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage-dark hover:text-white flex items-center justify-center text-sage-ink font-bold transition shrink-0">
+      <!-- Top Bar: Large Centered Category Title + Close Button (No 1/6 counter) -->
+      <div class="px-5 sm:px-7 py-4 border-b border-white/25 flex items-center justify-between gap-4 sticky top-0 z-20 bg-[#FAF8F5]/20 backdrop-blur-xl">
+        <div class="w-9 shrink-0"></div>
+        <h2 id="modalCategory" class="text-xl sm:text-2xl lg:text-[26px] font-black text-white drop-shadow-[0_2px_10px_rgba(30,43,36,0.5)] uppercase tracking-wider text-center flex-1"></h2>
+        <button id="closeModalBtn" title="Đóng (ESC)" class="w-9 h-9 rounded-full bg-[#FAF8F5]/40 hover:bg-sage-dark text-sage-ink hover:text-white border border-white/40 flex items-center justify-center font-bold transition shrink-0 backdrop-blur-md">
           ✕
         </button>
       </div>
 
       <!-- Main Slideshow Stage -->
-      <div class="p-4 sm:p-7 space-y-5 bg-cream-bg/60">
+      <div class="p-4 sm:p-7 space-y-5">
         
         <!-- Image Frame with Left/Right Arrows -->
-        <div class="relative rounded-2xl overflow-hidden border border-sage-border bg-sage-ink/95 shadow-lg group select-none">
-          <div id="modalMediaStage" class="w-full h-[320px] sm:h-[460px] lg:h-[520px] flex items-center justify-center relative">
+        <div class="relative rounded-2xl overflow-hidden border border-white/35 bg-[#1E2B24]/55 backdrop-blur-md shadow-xl group select-none">
+          <div id="modalMediaStage" class="w-full h-[320px] sm:h-[460px] lg:h-[520px] flex items-center justify-center relative transition-all duration-300 ease-out">
             <!-- Active Slide Injected Here -->
           </div>
 
           <!-- Prev Arrow -->
-          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-cream-card/90 hover:bg-sage-dark text-sage-dark hover:text-white flex items-center justify-center shadow-lg transition font-black text-lg">
+          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/75 hover:bg-sage-dark text-sage-dark hover:text-white border border-white/50 flex items-center justify-center shadow-lg transition font-black text-lg backdrop-blur-md">
             ‹
           </button>
 
           <!-- Next Arrow -->
-          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-cream-card/90 hover:bg-sage-dark text-sage-dark hover:text-white flex items-center justify-center shadow-lg transition font-black text-lg">
+          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/75 hover:bg-sage-dark text-sage-dark hover:text-white border border-white/50 flex items-center justify-center shadow-lg transition font-black text-lg backdrop-blur-md">
             ›
           </button>
         </div>
 
-        <!-- Centered KV / Slide Title Directly Under the Image -->
-        <div class="text-center max-w-2xl mx-auto space-y-1 px-2">
-          <h3 id="modalSlideCaption" class="text-xl sm:text-2xl font-black text-sage-dark tracking-tight"></h3>
-          <p id="modalProjectSubtitle" class="text-xs sm:text-sm font-medium text-sage-muted"></p>
+        <!-- Centered KV Title & Subtitle Inside Rounded Cream Box (25% Opacity) -->
+        <div class="max-w-2xl mx-auto rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 px-5 py-3.5 text-center shadow-sm">
+          <h3 id="modalSlideCaption" class="text-lg sm:text-2xl font-black text-white drop-shadow-[0_1px_6px_rgba(30,43,36,0.5)] tracking-tight"></h3>
+          <p id="modalProjectSubtitle" class="text-xs sm:text-sm font-semibold text-white/90 drop-shadow-[0_1px_4px_rgba(30,43,36,0.45)] mt-1"></p>
         </div>
 
         <!-- Dot Indicators & Thumbnail Strip -->
@@ -610,9 +607,9 @@
           <div id="modalThumbnails" class="thumb-strip flex items-center justify-center gap-2.5 overflow-x-auto py-1 px-2"></div>
         </div>
 
-        <!-- Compact Project Info Footer -->
-        <div class="rounded-2xl bg-cream-card border border-sage-border p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <p id="modalDesc" class="text-xs sm:text-sm text-sage-muted leading-relaxed md:max-w-2xl"></p>
+        <!-- Description Box (25% Cream Opacity) -->
+        <div class="rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <p id="modalDesc" class="text-xs sm:text-sm font-medium text-white/95 drop-shadow-[0_1px_4px_rgba(30,43,36,0.45)] leading-relaxed md:max-w-2xl"></p>
           <div class="flex flex-wrap gap-1.5 shrink-0" id="modalTools"></div>
         </div>
 
@@ -622,7 +619,7 @@
 
   <script>
     // =========================================================================
-    // CẤU HÌNH 6 ALBUM PORTFOLIO (MỖI MỤC CHỨA NHIỀU HÌNH TRÌNH CHIẾU DẠNG SLIDER)
+    // CẤU HÌNH 5 ALBUM PORTFOLIO (MỖI MỤC CHỨA NHIỀU HÌNH TRÌNH CHIẾU DẠNG SLIDER)
     // =========================================================================
     const PORTFOLIO_PROJECTS = [
       {
@@ -636,14 +633,12 @@
         accentBg: 'from-[#4D6D57] to-[#2B4032]',
         badge: 'KEY VISUAL ALBUM',
         description: 'Bộ sưu tập Key Visual chủ đạo cho các chiến dịch lớn của King Coffee (Tết Sum Vầy, Cà Phê Sữa Đá X3, Trà Oolong, Món Ngon Tròn Vị) triển khai đồng bộ trên toàn quốc.',
-        // Bạn chỉ cần chép ảnh vào thư mục projects/kv/ với tên 01.jpg, 02.jpg, 03.jpg...
         slides: [
           { src: 'projects/kv/01.jpg', caption: 'KV 01 — King Coffee Tết Sum Vầy & Quà Tặng Xuân' },
           { src: 'projects/kv/02.jpg', caption: 'KV 02 — King Coffee X3 Mạnh Gấp 3 Tỉnh Tạo Cả Ngày Dài' },
           { src: 'projects/kv/03.jpg', caption: 'KV 03 — Trà Oolong Chất Topping Vui' },
           { src: 'projects/kv/04.jpg', caption: 'KV 04 — Món Ngon Tròn Vị Tiện Lợi Mỗi Ngày' },
-          { src: 'projects/kv/05.jpg', caption: 'KV 05 — Max Tươi Mới Max Tỉnh Táo' },
-	  { src: 'projects/kv/06.jpg', caption: 'KV 06 — Max Tươi Mới Max Tỉnh Táo' }
+          { src: 'projects/kv/05.jpg', caption: 'KV 05 — Max Tươi Mới Max Tỉnh Táo' }
         ]
       },
       {
@@ -784,7 +779,7 @@
     });
 
     // =========================================================================
-    // SLIDESHOW LIGHTBOX LOGIC
+    // SLIDESHOW LIGHTBOX LOGIC WITH BLUR + FADE TRANSITION
     // =========================================================================
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -793,6 +788,7 @@
 
     let currentProject = null;
     let currentSlideIndex = 0;
+    let isTransitioning = false;
 
     function openProjectModal(projectId) {
       const proj = PORTFOLIO_PROJECTS.find(p => p.id === projectId);
@@ -800,71 +796,98 @@
 
       currentProject = proj;
       currentSlideIndex = 0;
+      isTransitioning = false;
 
       document.getElementById('modalCategory').textContent = proj.categoryLabel;
       document.getElementById('modalProjectSubtitle').textContent = `${proj.title} • ${proj.client}`;
       document.getElementById('modalDesc').textContent = proj.description;
       document.getElementById('modalTools').innerHTML = proj.tools.map(t =>
-        `<span class="px-2.5 py-1 rounded-full bg-sage-light text-sage-dark font-bold text-[11px]">${t}</span>`
+        `<span class="px-3 py-1 rounded-full bg-[#FAF8F5]/75 text-sage-dark font-bold text-[11px] border border-white/40">${t}</span>`
       ).join('');
 
-      updateSlideView();
+      updateSlideView(false);
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
     }
 
-    function updateSlideView() {
+    function updateSlideView(animate = true) {
       if (!currentProject) return;
       const slides = currentProject.slides;
-      const total = slides.length;
       const slide = slides[currentSlideIndex];
-
-      document.getElementById('modalSlideCounter').textContent = `Hình ${currentSlideIndex + 1} / ${total}`;
-      // Centered KV name directly below the image
-      document.getElementById('modalSlideCaption').textContent = slide.caption;
-
       const stage = document.getElementById('modalMediaStage');
-      stage.innerHTML = `
-        <img
-          src="${slide.src}"
-          alt="${slide.caption}"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          class="max-w-full max-h-full object-contain transition-opacity duration-300"
-        />
-        <div style="display:none" class="w-full h-full p-8 flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg}">
-          <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-3">${currentProject.categoryLabel} • 0${currentSlideIndex + 1}</span>
-          <h4 class="text-xl sm:text-2xl font-black max-w-lg">${slide.caption}</h4>
-          <p class="text-xs text-white/80 mt-2 max-w-md">
-            Chép file ảnh của bạn vào thư mục <code class="bg-black/25 px-1.5 py-0.5 rounded">${slide.src}</code> để hiển thị hình trình chiếu tại đây.
-          </p>
-        </div>
-      `;
 
-      // Render Dots
-      const dotsEl = document.getElementById('modalDots');
-      dotsEl.innerHTML = slides.map((_, i) => `
-        <button onclick="goToSlide(${i})" class="h-2 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-sage-dark' : 'w-2 bg-sage/35 hover:bg-sage'}"></button>
-      `).join('');
-
-      // Render Thumbnails
-      const thumbsEl = document.getElementById('modalThumbnails');
-      thumbsEl.innerHTML = slides.map((s, i) => `
-        <button onclick="goToSlide(${i})" class="relative w-20 h-13 rounded-lg overflow-hidden border-2 transition shrink-0 ${i === currentSlideIndex ? 'border-sage-dark ring-2 ring-sage/40 scale-105' : 'border-sage-border opacity-65 hover:opacity-100'}">
-          <img src="${s.src}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-12 object-cover" />
-          <div style="display:none" class="w-full h-12 bg-sage-dark text-white font-mono text-[10px] font-bold items-center justify-center">
-            0${i + 1}
+      const renderContent = () => {
+        document.getElementById('modalSlideCaption').textContent = slide.caption;
+        stage.innerHTML = `
+          <img
+            src="${slide.src}"
+            alt="${slide.caption}"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            class="max-w-full max-h-full object-contain"
+          />
+          <div style="display:none" class="w-full h-full p-8 flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg}">
+            <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-3">${currentProject.categoryLabel} • 0${currentSlideIndex + 1}</span>
+            <h4 class="text-xl sm:text-2xl font-black max-w-lg">${slide.caption}</h4>
+            <p class="text-xs text-white/80 mt-2 max-w-md">
+              Chép file ảnh của bạn vào thư mục <code class="bg-black/25 px-1.5 py-0.5 rounded">${slide.src}</code> để hiển thị hình trình chiếu tại đây.
+            </p>
           </div>
-        </button>
-      `).join('');
+        `;
+
+        // Render Dots
+        const dotsEl = document.getElementById('modalDots');
+        dotsEl.innerHTML = slides.map((_, i) => `
+          <button onclick="goToSlide(${i})" class="h-2 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-white shadow' : 'w-2 bg-white/45 hover:bg-white/80'}"></button>
+        `).join('');
+
+        // Render Thumbnails
+        const thumbsEl = document.getElementById('modalThumbnails');
+        thumbsEl.innerHTML = slides.map((s, i) => `
+          <button onclick="goToSlide(${i})" class="relative w-20 h-13 rounded-lg overflow-hidden border-2 transition shrink-0 ${i === currentSlideIndex ? 'border-white ring-2 ring-white/50 scale-105 opacity-100' : 'border-white/30 opacity-60 hover:opacity-100'}">
+            <img src="${s.src}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-12 object-cover" />
+            <div style="display:none" class="w-full h-12 bg-sage-dark text-white font-mono text-[10px] font-bold items-center justify-center">
+              0${i + 1}
+            </div>
+          </button>
+        `).join('');
+      };
+
+      if (!animate) {
+        stage.style.opacity = '1';
+        stage.style.filter = 'blur(0px)';
+        stage.style.transform = 'scale(1)';
+        renderContent();
+        return;
+      }
+
+      // Blur + subtle fade out before switching to next slide
+      isTransitioning = true;
+      stage.style.opacity = '0.25';
+      stage.style.filter = 'blur(12px)';
+      stage.style.transform = 'scale(0.985)';
+
+      setTimeout(() => {
+        renderContent();
+        requestAnimationFrame(() => {
+          stage.style.opacity = '1';
+          stage.style.filter = 'blur(0px)';
+          stage.style.transform = 'scale(1)';
+          setTimeout(() => {
+            isTransitioning = false;
+          }, 260);
+        });
+      }, 220);
     }
 
     function goToSlide(index) {
-      if (!currentProject) return;
+      if (!currentProject || isTransitioning) return;
       const total = currentProject.slides.length;
-      currentSlideIndex = (index + total) % total;
-      updateSlideView();
+      const nextIdx = (index + total) % total;
+      if (nextIdx === currentSlideIndex && total > 1) return;
+      currentSlideIndex = nextIdx;
+      updateSlideView(true);
     }
 
     prevSlideBtn.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
