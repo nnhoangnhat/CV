@@ -219,9 +219,9 @@
           </div>
         </section>
 
-        <!-- INTEGRATED PORTFOLIO SHOWCASE (HOSTED DIRECTLY ON GITHUB) -->
+        <!-- INTEGRATED PORTFOLIO SHOWCASE (5 CATEGORIES) -->
         <section id="portfolio" class="bento-card p-6 sm:p-8 space-y-6">
-          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-bold mb-2">
                 ● Selected Works • Portfolio Trực Tuyến
@@ -229,26 +229,32 @@
               <h2 class="text-2xl sm:text-3xl font-black text-sage-ink">Dự Án Tiêu Biểu</h2>
             </div>
 
-            <!-- Category Filter Tabs -->
+            <!-- 5 Category Filter Tabs -->
             <div class="flex flex-wrap gap-2" id="portfolioFilters">
               <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
                 Tất Cả (06)
               </button>
               <button data-filter="key-visual" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                Key Visual & POSM
+                Key Visual
               </button>
-              <button data-filter="video-motion" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                Video & Motion
+              <button data-filter="posm" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                POSM
               </button>
-              <button data-filter="ui-ux" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                UI/UX App & Branding
+              <button data-filter="post" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                Post
+              </button>
+              <button data-filter="motion-graphic" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                Motion Graphic
+              </button>
+              <button data-filter="ai-video" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
+                AI Video
               </button>
             </div>
           </div>
 
           <!-- Portfolio Grid -->
           <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Project cards rendered dynamically via JS for easy editing & lightbox preview -->
+            <!-- Project cards rendered dynamically via JS -->
           </div>
         </section>
 
@@ -314,7 +320,7 @@
               <div class="flex items-start sm:items-center gap-4">
                 <span class="font-mono text-xs font-bold text-sage-dark bg-sage-light px-2.5 py-1 rounded-md">[002]</span>
                 <div>
-                  <h3 class="text-lg font-extrabold text-sage-ink group-hover:text-sage-dark transition">Key Visual, Branding & POSM</h3>
+                  <h3 class="text-lg font-extrabold text-sage-ink group-hover:text-sage-dark transition">Key Visual, POSM & Social Post</h3>
                   <p class="text-xs text-sage-muted mt-0.5">Thiết kế ấn phẩm chiến dịch Digital (Poster, Banner MXH) và ấn phẩm in ấn thương mại (Catalogue, Standee, POSM).</p>
                 </div>
               </div>
@@ -544,7 +550,7 @@
               </span>
               <h3 class="text-2xl sm:text-3xl font-black leading-tight">Sẵn sàng đồng hành cùng dự án tiếp theo của bạn.</h3>
               <p class="text-sm text-white/80 mt-3 leading-relaxed">
-                Liên hệ trực tiếp qua điện thoại, email hoặc bấm vào từng dự án bên trên để xem chi tiết các ấn phẩm Key Visual, Video & Branding đã thực hiện.
+                Liên hệ trực tiếp qua điện thoại, email hoặc bấm vào từng dự án bên trên để xem chi tiết các ấn phẩm Key Visual, POSM, Post, Motion Graphic & AI Video đã thực hiện.
               </p>
             </div>
 
@@ -620,14 +626,15 @@
 
   <script>
     // =========================================================================
-    // DANH SÁCH DỰ ÁN PORTFOLIO (BẠN CHỈ CẦN THAY TÊN FILE ẢNH TRONG THƯ MỤC projects/)
+    // DANH SÁCH DỰ ÁN PORTFOLIO THEO 5 NHÓM:
+    // 'key-visual' | 'posm' | 'post' | 'motion-graphic' | 'ai-video'
     // =========================================================================
     const PORTFOLIO_PROJECTS = [
       {
         id: 'king-coffee-kv',
         category: 'key-visual',
-        categoryLabel: 'Key Visual & POSM',
-        title: 'King Coffee — Chiến Dịch Key Visual & Sản Phẩm Mới',
+        categoryLabel: 'Key Visual',
+        title: 'King Coffee — Chiến Dịch Key Visual Chủ Đạo',
         client: 'TNI Corporation / King Coffee',
         role: 'Multimedia Designer & Key Visual Artist',
         tools: ['Photoshop', 'Illustrator', '3D Mockup'],
@@ -635,77 +642,77 @@
         gallery: ['projects/project-01.jpg'],
         accentBg: 'from-[#8B261D] to-[#4A120D]',
         badge: 'KEY VISUAL',
-        description: 'Thiết kế hệ thống Key Visual chủ đạo cho các dòng sản phẩm chiến lược của King Coffee (Tết Sum Vầy, Cà Phê Sữa Đá X3, Trà Oolong, Món Ngon Tròn Vị) triển khai đồng bộ trên Digital Social Media và ấn phẩm POSM điểm bán toàn quốc.'
+        description: 'Thiết kế hệ thống Key Visual chủ đạo cho các chiến dịch lớn của King Coffee (Tết Sum Vầy, Cà Phê Sữa Đá X3, Trà Oolong, Món Ngon Tròn Vị), định hình phong cách thị giác xuyên suốt toàn chiến dịch.'
       },
       {
-        id: 'milano-nail-spa',
-        category: 'video-motion',
-        categoryLabel: 'Video & Motion',
-        title: 'Milano Nail Spa — Art Direction & Social Video Reels',
-        client: 'Milano Nail Spa (Dallas, US)',
-        role: 'Creative Team Leader',
-        tools: ['Premiere Pro', 'After Effects', 'AI Video'],
+        id: 'posm-branding',
+        category: 'posm',
+        categoryLabel: 'POSM',
+        title: 'Hệ Thống Ấn Phẩm POSM, Catalogue & Booth Sự Kiện',
+        client: 'TNI Corporation & Việt Khởi Land',
+        role: 'Chuyên Viên Thiết Kế Ấn Phẩm & POSM',
+        tools: ['Illustrator', 'Photoshop', '3D Mockup'],
         cover: 'projects/project-02.jpg',
         gallery: ['projects/project-02.jpg'],
-        accentBg: 'from-[#4D6D57] to-[#2B4032]',
-        badge: 'ART DIRECTION',
-        description: 'Định hướng nghệ thuật, xây dựng concept quay dựng và quản lý đội ngũ sáng tạo sản xuất chuỗi video ngắn (Reels/TikTok), Key Visual khuyến mãi theo mùa cho hệ thống salon tại thị trường Mỹ.'
+        accentBg: 'from-[#5B7A65] to-[#34493B]',
+        badge: 'POSM',
+        description: 'Thiết kế trọn bộ vật phẩm quảng cáo điểm bán (POSM), Standee, Wobbler, Hanger siêu thị, Brochure và Catalogue dự án bất động sản với quy chuẩn in ấn chất lượng cao.'
       },
       {
-        id: 'tni-ceo-events',
-        category: 'video-motion',
-        categoryLabel: 'Video & Motion',
-        title: 'TNI Corporation — Event Filming & Corporate Motion',
-        client: 'TNI Corporation',
-        role: 'Cameraman, Flycam & Video Editor',
-        tools: ['Premiere Pro', 'After Effects', 'Flycam'],
+        id: 'social-post-campaign',
+        category: 'post',
+        categoryLabel: 'Post',
+        title: 'Chuỗi Thiết Kế Social Post & Banner Digital',
+        client: 'Milano Nail Spa (US) & King Coffee',
+        role: 'Creative Team Leader / Social Designer',
+        tools: ['Photoshop', 'Illustrator'],
         cover: 'projects/project-03.jpg',
         gallery: ['projects/project-03.jpg'],
-        accentBg: 'from-[#6A8B74] to-[#3B5242]',
-        badge: 'EVENT & MOTION',
-        description: 'Trực tiếp quay phim, chụp ảnh và dựng video hậu kỳ cho các sự kiện truyền thông cấp cao của CEO Lê Hoàng Diệp Thảo cùng các hội nghị ra mắt sản phẩm lớn của tập đoàn.'
+        accentBg: 'from-[#4D6D57] to-[#2B4032]',
+        badge: 'POST',
+        description: 'Sáng tạo và đồng bộ hệ thống ấn phẩm truyền thông mạng xã hội (Facebook, Instagram Post, Carousel, Banner khuyến mãi theo mùa) tối ưu tỷ lệ tương tác và nhận diện thương hiệu.'
       },
       {
-        id: 'eezz-salon-app',
-        category: 'ui-ux',
-        categoryLabel: 'UI/UX App & Branding',
-        title: 'EEzZ — Hệ Thống App Quản Lý Salon & Nail US',
-        client: 'Syslytic',
-        role: 'UI/UX Designer & Motion Graphics',
-        tools: ['Illustrator', 'Photoshop', 'After Effects'],
+        id: 'motion-graphic-2d',
+        category: 'motion-graphic',
+        categoryLabel: 'Motion Graphic',
+        title: '2D Motion Graphics, Intro & Video Quảng Bá',
+        client: 'TNI Corporation & Syslytic (EEzZ App)',
+        role: 'Motion Graphic Designer & Video Editor',
+        tools: ['After Effects', 'Premiere Pro', 'Illustrator'],
         cover: 'projects/project-04.jpg',
         gallery: ['projects/project-04.jpg'],
-        accentBg: 'from-[#365341] to-[#1E2B24]',
-        badge: 'UI/UX MOBILE APP',
-        description: 'Thiết kế giao diện người dùng (UI/UX) cho hệ sinh thái ứng dụng đặt lịch, quản lý thợ và thanh toán POS chuyên biệt cho ngành Nail & Spa tại Mỹ, kèm video Motion hướng dẫn tính năng.'
+        accentBg: 'from-[#6A8B74] to-[#3B5242]',
+        badge: 'MOTION GRAPHIC',
+        description: 'Sản xuất 2D Animation, Motion Graphics giới thiệu tính năng ứng dụng EEzZ Salon App tại Mỹ, video LED sự kiện doanh nghiệp và hậu kỳ video truyền thông thương hiệu.'
       },
       {
-        id: 'viet-khoi-land',
-        category: 'key-visual',
-        categoryLabel: 'Key Visual & POSM',
-        title: 'Việt Khởi Land — Bộ Ấn Phẩm Bất Động Sản & Sự Kiện',
-        client: 'Việt Khởi Land',
-        role: 'Chuyên Viên Thiết Kế Truyền Thông',
-        tools: ['Illustrator', 'Photoshop', 'Premiere Pro'],
+        id: 'ai-video-commercial',
+        category: 'ai-video',
+        categoryLabel: 'AI Video',
+        title: 'AI Video Production & Hiệu Ứng Thị Giác Sáng Tạo',
+        client: 'Milano Nail Spa & Commercial R&D',
+        role: 'AI Video Creator & Art Director',
+        tools: ['AI Video', 'After Effects', 'Premiere Pro'],
         cover: 'projects/project-05.jpg',
         gallery: ['projects/project-05.jpg'],
-        accentBg: 'from-[#5B7A65] to-[#34493B]',
-        badge: 'REAL ESTATE',
-        description: 'Thiết kế trọn bộ ấn phẩm bán hàng dự án bất động sản bao gồm Brochure, Catalogue, Standee, Banner Digital và quay dựng phim tư liệu các lễ mở bán dự án.'
+        accentBg: 'from-[#365341] to-[#1E2B24]',
+        badge: 'AI VIDEO',
+        description: 'Ứng dụng công nghệ AI Video Generation kết hợp dựng hậu kỳ After Effects để sản xuất TVC sản phẩm, video ngắn (Reels/TikTok) với kỹ xảo chuyển cảnh ấn tượng và tối ưu chi phí quay dựng.'
       },
       {
-        id: 'ai-creative-lab',
-        category: 'video-motion',
-        categoryLabel: 'Video & Motion',
-        title: 'AI Video Production & 3D Commercial Visualization',
-        client: 'Creative R&D / Commercial Projects',
-        role: 'AI Video Creator & 3D Generalist',
-        tools: ['AI Video', 'After Effects', '3D Visualization'],
+        id: 'key-visual-product',
+        category: 'key-visual',
+        categoryLabel: 'Key Visual',
+        title: 'Milano Nail Spa — Seasonal Key Visual & Campaign',
+        client: 'Milano Nail Spa (Dallas, US)',
+        role: 'Creative Team Leader',
+        tools: ['Photoshop', 'Illustrator', 'AI Visual'],
         cover: 'projects/project-06.jpg',
         gallery: ['projects/project-06.jpg'],
         accentBg: 'from-[#4D6D57] to-[#1E2B24]',
-        badge: 'AI PRODUCTION',
-        description: 'Ứng dụng quy trình AI Video Generation kết hợp hậu kỳ After Effects và dựng phối cảnh 3D để rút ngắn thời gian sản xuất TVC quảng cáo sản phẩm với hiệu ứng thị giác ấn tượng.'
+        badge: 'KEY VISUAL',
+        description: 'Định hướng nghệ thuật và thiết kế Key Visual cho các chiến dịch lễ hội, ra mắt bộ sưu tập mẫu Nail mới tại hệ thống chi nhánh Frisco và Dallas (Texas, Mỹ).'
       }
     ];
 
@@ -720,7 +727,7 @@
       gridEl.innerHTML = items.map((proj, idx) => `
         <article onclick="openProjectModal('${proj.id}')" class="project-card cursor-pointer rounded-2xl bg-cream-bg border border-sage-border overflow-hidden flex flex-col justify-between group">
           <div>
-            <!-- Thumbnail Box (Auto-fallback to stylish cover if image file not yet uploaded) -->
+            <!-- Thumbnail Box -->
             <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br ${proj.accentBg}">
               <img
                 src="${proj.cover}"
