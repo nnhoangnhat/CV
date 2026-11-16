@@ -555,9 +555,9 @@
     </div>
   </div>
 
-  <!-- STEPPED COVERFLOW LIGHTBOX -->
+  <!-- LAYERED OVERLAPPING COVERFLOW LIGHTBOX (CENTER ALWAYS CENTERED + SIDE LAYERS 1/5 TUCKED BEHIND) -->
   <div id="projectModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-[#1E2B24]/55 backdrop-blur-xl transition-all duration-300">
-    <button id="closeModalBtn" title="Đóng (ESC)" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-30 w-10 h-10 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center font-bold transition backdrop-blur-md shadow-lg">
+    <button id="closeModalBtn" title="Đóng (ESC)" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-40 w-10 h-10 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center font-bold transition backdrop-blur-md shadow-lg">
       ✕
     </button>
 
@@ -565,19 +565,20 @@
       
       <h2 id="modalCategory" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] uppercase tracking-widest text-center"></h2>
 
-      <!-- 3-Panel Stepped Coverflow Stage -->
+      <!-- 3-Layer Overlapping Coverflow Stage -->
       <div class="w-full space-y-5">
         <div class="relative w-full flex items-center justify-center select-none py-2">
           
-          <div id="modalMediaStage" class="w-full h-[300px] sm:h-[430px] lg:h-[500px] flex items-center justify-center gap-2 sm:gap-3.5 relative transition-all duration-300 ease-out overflow-visible">
+          <!-- Fixed-height centered stage where active slide stays strictly centered and side slides tuck 1/5 behind it -->
+          <div id="modalMediaStage" class="w-full h-[300px] sm:h-[430px] lg:h-[500px] relative flex items-center justify-center transition-all duration-300 ease-out overflow-visible">
             <!-- Left / Center / Right Slides Injected Here -->
           </div>
 
-          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
+          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
             ‹
           </button>
 
-          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
+          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FAF8F5]/35 hover:bg-sage-dark text-white border border-white/45 flex items-center justify-center shadow-lg transition font-black text-2xl backdrop-blur-md">
             ›
           </button>
         </div>
@@ -700,7 +701,7 @@
       gridEl.innerHTML = items.map((proj) => `
         <article onclick="openProjectModal('${proj.id}')" class="project-card cursor-pointer rounded-2xl bg-cream-bg border border-sage-border overflow-hidden flex flex-col justify-between group">
           <div>
-            <!-- Clean Thumbnail Box (Removed POSM ALBUM, 3 ảnh, Album • 5 hình badges) -->
+            <!-- Clean Thumbnail Box -->
             <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br ${proj.accentBg}">
               <img
                 src="${proj.cover}"
@@ -750,7 +751,9 @@
     });
 
     // =========================================================================
-    // STEPPED 3-PANEL COVERFLOW LIGHTBOX LOGIC
+    // LAYERED OVERLAPPING 3-PANEL COVERFLOW LIGHTBOX LOGIC
+    // - Active slide: Strictly dead-center (z-30, h-full) even when left/right images have different aspect ratios
+    // - Left & Right slides: Lower z-index (z-10) tucked 1/5 behind the center slide (negative overlap margin) & shifted down 1/5
     // =========================================================================
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -783,32 +786,22 @@
       document.body.style.overflow = 'hidden';
     }
 
-    function buildSlideCard(slideObj, slideIdx, role) {
-      const isActive = role === 'active';
-
-      const wrapperClasses = isActive
-        ? 'z-20 h-full max-w-[86vw] sm:max-w-[62vw] lg:max-w-[56vw] flex items-center justify-center shrink-0 transition-all duration-300'
-        : 'hidden sm:flex z-10 h-[72%] max-w-[22vw] lg:max-w-[24vw] translate-y-[14%] opacity-65 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer items-center justify-center shrink-0 transition-all duration-300';
-
+    function buildInnerImageHtml(slideObj, slideIdx, isActive) {
       const imgClasses = isActive
-        ? 'h-full w-auto max-w-full object-contain rounded-xl shadow-[0_24px_60px_rgba(0,0,0,0.55)]'
-        : 'h-full w-auto max-w-full object-contain rounded-xl shadow-lg';
-
-      const clickAttr = isActive ? '' : `onclick="goToSlide(${slideIdx})" title="Xem ${slideObj.caption}"`;
+        ? 'h-full w-auto max-w-[84vw] sm:max-w-[54vw] lg:max-w-[48vw] object-contain rounded-xl shadow-[0_26px_65px_rgba(0,0,0,0.65)]'
+        : 'h-full w-auto max-w-[30vw] sm:max-w-[26vw] lg:max-w-[25vw] object-contain rounded-xl shadow-xl';
 
       return `
-        <div ${clickAttr} class="${wrapperClasses}">
-          <img
-            src="${slideObj.src}"
-            alt="${slideObj.caption}"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            class="${imgClasses}"
-          />
-          <div style="display:none" class="${isActive ? 'w-[300px] sm:w-[440px] h-full' : 'w-[180px] lg:w-[240px] h-full'} p-6 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl border border-white/20">
-            <span class="font-mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-2">0${slideIdx + 1}</span>
-            <h4 class="${isActive ? 'text-lg sm:text-2xl' : 'text-xs'} font-black line-clamp-3">${slideObj.caption}</h4>
-            ${isActive ? `<p class="text-[11px] text-white/75 mt-2"><code>${slideObj.src}</code></p>` : ''}
-          </div>
+        <img
+          src="${slideObj.src}"
+          alt="${slideObj.caption}"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          class="${imgClasses}"
+        />
+        <div style="display:none" class="${isActive ? 'w-[280px] sm:w-[420px] h-full' : 'w-[170px] lg:w-[230px] h-full'} p-6 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl border border-white/20">
+          <span class="font-mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-2">0${slideIdx + 1}</span>
+          <h4 class="${isActive ? 'text-lg sm:text-2xl' : 'text-xs'} font-black line-clamp-3">${slideObj.caption}</h4>
+          ${isActive ? `<p class="text-[11px] text-white/75 mt-2"><code>${slideObj.src}</code></p>` : ''}
         </div>
       `;
     }
@@ -826,12 +819,40 @@
         document.getElementById('modalSlideCaption').textContent = activeSlide.caption;
 
         if (total === 1) {
-          stage.innerHTML = buildSlideCard(activeSlide, 0, 'active');
+          stage.innerHTML = `
+            <div class="relative z-30 h-full flex items-center justify-center">
+              ${buildInnerImageHtml(activeSlide, 0, true)}
+            </div>
+          `;
         } else {
-          stage.innerHTML =
-            buildSlideCard(slides[prevIdx], prevIdx, 'prev') +
-            buildSlideCard(activeSlide, currentSlideIndex, 'active') +
-            buildSlideCard(slides[nextIdx], nextIdx, 'next');
+          // Using an inline-flex cluster centered in the stage, where Prev & Next are anchored
+          // right behind the left/right edges of the Center layer (1/5 tucked underneath via -mr/-ml overlap)
+          stage.innerHTML = `
+            <div class="relative h-full flex items-center justify-center">
+              <!-- Left Layer (Underneath Center Layer, 1/5 tucked behind, shifted down 1/5) -->
+              <div
+                onclick="goToSlide(${prevIdx})"
+                title="Xem ${slides[prevIdx].caption}"
+                class="hidden sm:flex relative z-10 h-[72%] translate-y-[14%] -mr-10 md:-mr-14 lg:-mr-20 opacity-70 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer items-center justify-center shrink-0 transition-all duration-300"
+              >
+                ${buildInnerImageHtml(slides[prevIdx], prevIdx, false)}
+              </div>
+
+              <!-- Center Active Layer (Always Strictly Centered, Top Layer z-30) -->
+              <div class="relative z-30 h-full flex items-center justify-center shrink-0 transition-all duration-300">
+                ${buildInnerImageHtml(activeSlide, currentSlideIndex, true)}
+              </div>
+
+              <!-- Right Layer (Underneath Center Layer, 1/5 tucked behind, shifted down 1/5) -->
+              <div
+                onclick="goToSlide(${nextIdx})"
+                title="Xem ${slides[nextIdx].caption}"
+                class="hidden sm:flex relative z-10 h-[72%] translate-y-[14%] -ml-10 md:-ml-14 lg:-ml-20 opacity-70 blur-[2.5px] hover:opacity-95 hover:blur-[1px] cursor-pointer items-center justify-center shrink-0 transition-all duration-300"
+              >
+                ${buildInnerImageHtml(slides[nextIdx], nextIdx, false)}
+              </div>
+            </div>
+          `;
         }
 
         const dotsEl = document.getElementById('modalDots');
