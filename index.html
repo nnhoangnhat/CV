@@ -219,7 +219,7 @@
           </div>
         </section>
 
-        <!-- INTEGRATED PORTFOLIO SHOWCASE (5 CATEGORIES) -->
+        <!-- INTEGRATED PORTFOLIO SHOWCASE (5 ITEMS) -->
         <section id="portfolio" class="bento-card p-6 sm:p-8 space-y-6">
           <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
@@ -232,7 +232,7 @@
             <!-- 5 Category Filter Tabs -->
             <div class="flex flex-wrap gap-2" id="portfolioFilters">
               <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                Tất Cả (06)
+                Tất Cả (05)
               </button>
               <button data-filter="key-visual" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
                 Key Visual
@@ -254,7 +254,7 @@
 
           <!-- Portfolio Grid -->
           <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Project cards rendered dynamically via JS -->
+            <!-- 5 Project cards rendered dynamically via JS -->
           </div>
         </section>
 
@@ -626,8 +626,8 @@
 
   <script>
     // =========================================================================
-    // DANH SÁCH DỰ ÁN PORTFOLIO THEO 5 NHÓM:
-    // 'key-visual' | 'posm' | 'post' | 'motion-graphic' | 'ai-video'
+    // 5 DỰ ÁN PORTFOLIO CHÍNH XÁC THEO YÊU CẦU:
+    // 1. Key Visual | 2. POSM | 3. Post | 4. Motion Graphic | 5. AI Video
     // =========================================================================
     const PORTFOLIO_PROJECTS = [
       {
@@ -699,20 +699,6 @@
         accentBg: 'from-[#365341] to-[#1E2B24]',
         badge: 'AI VIDEO',
         description: 'Ứng dụng công nghệ AI Video Generation kết hợp dựng hậu kỳ After Effects để sản xuất TVC sản phẩm, video ngắn (Reels/TikTok) với kỹ xảo chuyển cảnh ấn tượng và tối ưu chi phí quay dựng.'
-      },
-      {
-        id: 'key-visual-product',
-        category: 'key-visual',
-        categoryLabel: 'Key Visual',
-        title: 'Milano Nail Spa — Seasonal Key Visual & Campaign',
-        client: 'Milano Nail Spa (Dallas, US)',
-        role: 'Creative Team Leader',
-        tools: ['Photoshop', 'Illustrator', 'AI Visual'],
-        cover: 'projects/project-06.jpg',
-        gallery: ['projects/project-06.jpg'],
-        accentBg: 'from-[#4D6D57] to-[#1E2B24]',
-        badge: 'KEY VISUAL',
-        description: 'Định hướng nghệ thuật và thiết kế Key Visual cho các chiến dịch lễ hội, ra mắt bộ sưu tập mẫu Nail mới tại hệ thống chi nhánh Frisco và Dallas (Texas, Mỹ).'
       }
     ];
 
@@ -809,7 +795,7 @@
           <div style="display:none" class="p-10 text-center text-white space-y-2">
             <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15">${proj.badge}</span>
             <h4 class="text-2xl font-black pt-2">${proj.title}</h4>
-            <p class="text-xs text-white/75 max-w-md mx-auto">Bạn có thể chép file ảnh thực tế vào thư mục <code>projects/${proj.cover.split('/')[1]}</code> để hiển thị hình ảnh đầy đủ tại đây.</p>
+            <p class="text-xs text-white/75 max-w-md mx-auto">Chép file ảnh vào thư mục <code>projects/${proj.cover.split('/')[1]}</code> để hiển thị hình ảnh đầy đủ tại đây.</p>
           </div>
         </div>
       `;
