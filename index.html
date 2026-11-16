@@ -82,10 +82,10 @@
       box-shadow: 0 16px 32px -12px rgba(77, 109, 87, 0.2);
     }
     .thumb-strip::-webkit-scrollbar {
-      height: 5px;
+      height: 4px;
     }
     .thumb-strip::-webkit-scrollbar-thumb {
-      background: #6A8B74;
+      background: rgba(255, 255, 255, 0.45);
       border-radius: 999px;
     }
   </style>
@@ -562,64 +562,64 @@
     </div>
   </div>
 
-  <!-- SLIDESHOW ALBUM MODAL (TRANSPARENT BLUR OVERLAY + CREAM 25% BOXES + BLUR TRANSITION) -->
-  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#1E2B24]/45 backdrop-blur-xl p-3 sm:p-6 transition-all duration-300">
-    <div class="bg-[#FAF8F5]/25 backdrop-blur-2xl border border-white/40 rounded-3xl max-w-5xl w-full max-h-[94vh] overflow-y-auto shadow-[0_24px_60px_-15px_rgba(30,43,36,0.45)] flex flex-col">
-      
-      <!-- Top Bar: Large Centered Category Title + Close Button (No 1/6 counter) -->
-      <div class="px-5 sm:px-7 py-4 border-b border-white/25 flex items-center justify-between gap-4 sticky top-0 z-20 bg-[#FAF8F5]/20 backdrop-blur-xl">
-        <div class="w-9 shrink-0"></div>
-        <h2 id="modalCategory" class="text-xl sm:text-2xl lg:text-[26px] font-black text-white drop-shadow-[0_2px_10px_rgba(30,43,36,0.5)] uppercase tracking-wider text-center flex-1"></h2>
-        <button id="closeModalBtn" title="Đóng (ESC)" class="w-9 h-9 rounded-full bg-[#FAF8F5]/40 hover:bg-sage-dark text-sage-ink hover:text-white border border-white/40 flex items-center justify-center font-bold transition shrink-0 backdrop-blur-md">
-          ✕
-        </button>
-      </div>
+  <!-- FRAMELESS BLUR SLIDESHOW LIGHTBOX (NO OUTER BOX, NO IMAGE BACKDROP BOX, THUMBNAILS RIGHT UNDER MAIN IMAGE) -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-[#1E2B24]/55 backdrop-blur-xl transition-all duration-300">
+    <!-- Floating Close Button (Top Right) -->
+    <button id="closeModalBtn" title="Đóng (ESC)" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-30 w-10 h-10 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center font-bold transition backdrop-blur-md shadow-lg">
+      ✕
+    </button>
 
-      <!-- Main Slideshow Stage -->
-      <div class="p-4 sm:p-7 space-y-5">
+    <div class="min-h-screen w-full max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-10 flex flex-col items-center justify-center space-y-5">
+      
+      <!-- Large Centered Category Title -->
+      <h2 id="modalCategory" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] uppercase tracking-widest text-center"></h2>
+
+      <!-- Frameless Image Stage + Thumbnail Strip Directly Underneath -->
+      <div class="w-full space-y-4">
         
-        <!-- Image Frame with Left/Right Arrows -->
-        <div class="relative rounded-2xl overflow-hidden border border-white/35 bg-[#1E2B24]/55 backdrop-blur-md shadow-xl group select-none">
-          <div id="modalMediaStage" class="w-full h-[320px] sm:h-[460px] lg:h-[520px] flex items-center justify-center relative transition-all duration-300 ease-out">
+        <!-- Main Image Area (No Backdrop Box) -->
+        <div class="relative w-full flex items-center justify-center select-none">
+          <div id="modalMediaStage" class="w-full h-[300px] sm:h-[440px] lg:h-[510px] flex items-center justify-center relative transition-all duration-300 ease-out">
             <!-- Active Slide Injected Here -->
           </div>
 
           <!-- Prev Arrow -->
-          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/75 hover:bg-sage-dark text-sage-dark hover:text-white border border-white/50 flex items-center justify-center shadow-lg transition font-black text-lg backdrop-blur-md">
+          <button id="prevSlideBtn" title="Ảnh trước (←)" class="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center shadow-lg transition font-black text-xl backdrop-blur-md">
             ‹
           </button>
 
           <!-- Next Arrow -->
-          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/75 hover:bg-sage-dark text-sage-dark hover:text-white border border-white/50 flex items-center justify-center shadow-lg transition font-black text-lg backdrop-blur-md">
+          <button id="nextSlideBtn" title="Ảnh tiếp theo (→)" class="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF8F5]/30 hover:bg-sage-dark text-white border border-white/40 flex items-center justify-center shadow-lg transition font-black text-xl backdrop-blur-md">
             ›
           </button>
         </div>
 
-        <!-- Centered KV Title & Subtitle Inside Rounded Cream Box (25% Opacity) -->
-        <div class="max-w-2xl mx-auto rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 px-5 py-3.5 text-center shadow-sm">
-          <h3 id="modalSlideCaption" class="text-lg sm:text-2xl font-black text-white drop-shadow-[0_1px_6px_rgba(30,43,36,0.5)] tracking-tight"></h3>
-          <p id="modalProjectSubtitle" class="text-xs sm:text-sm font-semibold text-white/90 drop-shadow-[0_1px_4px_rgba(30,43,36,0.45)] mt-1"></p>
-        </div>
-
-        <!-- Dot Indicators & Thumbnail Strip -->
-        <div class="space-y-3">
+        <!-- Thumbnail Strip & Dots Directly Below Main Image (Inactive = 70% scale + subtle blur) -->
+        <div class="space-y-2.5">
           <div id="modalDots" class="flex items-center justify-center gap-2"></div>
-          <div id="modalThumbnails" class="thumb-strip flex items-center justify-center gap-2.5 overflow-x-auto py-1 px-2"></div>
-        </div>
-
-        <!-- Description Box (25% Cream Opacity) -->
-        <div class="rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <p id="modalDesc" class="text-xs sm:text-sm font-medium text-white/95 drop-shadow-[0_1px_4px_rgba(30,43,36,0.45)] leading-relaxed md:max-w-2xl"></p>
-          <div class="flex flex-wrap gap-1.5 shrink-0" id="modalTools"></div>
+          <div id="modalThumbnails" class="thumb-strip flex items-center justify-center gap-3 overflow-x-auto py-2 px-2"></div>
         </div>
 
       </div>
+
+      <!-- Centered KV Title & Subtitle Inside Rounded Cream Box (25% Opacity) -->
+      <div class="w-full max-w-2xl mx-auto rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 px-6 py-4 text-center shadow-sm">
+        <h3 id="modalSlideCaption" class="text-lg sm:text-2xl font-black text-white drop-shadow-[0_1px_6px_rgba(30,43,36,0.5)] tracking-tight"></h3>
+        <p id="modalProjectSubtitle" class="text-xs sm:text-sm font-semibold text-white/90 drop-shadow-[0_1px_4px_rgba(30,43,36,0.45)] mt-1"></p>
+      </div>
+
+      <!-- Description Box (25% Cream Opacity) -->
+      <div class="w-full max-w-4xl mx-auto rounded-2xl bg-[#FAF8F5]/25 backdrop-blur-md border border-white/35 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <p id="modalDesc" class="text-xs sm:text-sm font-medium text-white/95 drop-shadow-[0_1px_4px_rgba(30,43,36,0.45)] leading-relaxed md:max-w-2xl"></p>
+        <div class="flex flex-wrap gap-1.5 shrink-0" id="modalTools"></div>
+      </div>
+
     </div>
   </div>
 
   <script>
     // =========================================================================
-    // CẤU HÌNH 5 ALBUM PORTFOLIO (MỖI MỤC CHỨA NHIỀU HÌNH TRÌNH CHIẾU DẠNG SLIDER)
+    // CẤU HÌNH 5 ALBUM PORTFOLIO
     // =========================================================================
     const PORTFOLIO_PROJECTS = [
       {
@@ -719,7 +719,7 @@
         ? PORTFOLIO_PROJECTS
         : PORTFOLIO_PROJECTS.filter(p => p.category === filter);
 
-      gridEl.innerHTML = items.map((proj, idx) => `
+      gridEl.innerHTML = items.map((proj) => `
         <article onclick="openProjectModal('${proj.id}')" class="project-card cursor-pointer rounded-2xl bg-cream-bg border border-sage-border overflow-hidden flex flex-col justify-between group">
           <div>
             <!-- Thumbnail Box -->
@@ -779,7 +779,7 @@
     });
 
     // =========================================================================
-    // SLIDESHOW LIGHTBOX LOGIC WITH BLUR + FADE TRANSITION
+    // SLIDESHOW LIGHTBOX LOGIC (FRAMELESS + 70% BLURRED THUMBNAILS + BLUR TRANSITION)
     // =========================================================================
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -808,7 +808,7 @@
       updateSlideView(false);
 
       modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      modal.classList.add('block');
       document.body.style.overflow = 'hidden';
     }
 
@@ -825,9 +825,9 @@
             src="${slide.src}"
             alt="${slide.caption}"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            class="max-w-full max-h-full object-contain"
+            class="max-w-full max-h-full object-contain rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
           />
-          <div style="display:none" class="w-full h-full p-8 flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg}">
+          <div style="display:none" class="w-full max-w-2xl h-full p-8 rounded-2xl flex-col items-center justify-center text-center text-white bg-gradient-to-br ${currentProject.accentBg} shadow-2xl">
             <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 mb-3">${currentProject.categoryLabel} • 0${currentSlideIndex + 1}</span>
             <h4 class="text-xl sm:text-2xl font-black max-w-lg">${slide.caption}</h4>
             <p class="text-xs text-white/80 mt-2 max-w-md">
@@ -839,19 +839,26 @@
         // Render Dots
         const dotsEl = document.getElementById('modalDots');
         dotsEl.innerHTML = slides.map((_, i) => `
-          <button onclick="goToSlide(${i})" class="h-2 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-white shadow' : 'w-2 bg-white/45 hover:bg-white/80'}"></button>
+          <button onclick="goToSlide(${i})" class="h-1.5 rounded-full transition-all ${i === currentSlideIndex ? 'w-7 bg-white shadow' : 'w-1.5 bg-white/45 hover:bg-white/80'}"></button>
         `).join('');
 
-        // Render Thumbnails
+        // Render Thumbnails directly below main image:
+        // Active slide = 100% scale & sharp; Unvisited/passed slides = 70% scale (scale-[0.7]) & subtle blur (blur-[1.5px])
         const thumbsEl = document.getElementById('modalThumbnails');
-        thumbsEl.innerHTML = slides.map((s, i) => `
-          <button onclick="goToSlide(${i})" class="relative w-20 h-13 rounded-lg overflow-hidden border-2 transition shrink-0 ${i === currentSlideIndex ? 'border-white ring-2 ring-white/50 scale-105 opacity-100' : 'border-white/30 opacity-60 hover:opacity-100'}">
-            <img src="${s.src}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-12 object-cover" />
-            <div style="display:none" class="w-full h-12 bg-sage-dark text-white font-mono text-[10px] font-bold items-center justify-center">
-              0${i + 1}
-            </div>
-          </button>
-        `).join('');
+        thumbsEl.innerHTML = slides.map((s, i) => {
+          const isActive = i === currentSlideIndex;
+          const stateClasses = isActive
+            ? 'scale-100 opacity-100 blur-0 border-white ring-2 ring-white/60 shadow-lg z-10'
+            : 'scale-[0.70] opacity-70 blur-[1.5px] border-white/30 hover:opacity-95 hover:blur-0 hover:scale-[0.82]';
+          return `
+            <button onclick="goToSlide(${i})" class="relative w-24 h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 shrink-0 ${stateClasses}">
+              <img src="${s.src}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-cover" />
+              <div style="display:none" class="w-full h-full bg-sage-dark text-white font-mono text-xs font-bold items-center justify-center">
+                0${i + 1}
+              </div>
+            </button>
+          `;
+        }).join('');
       };
 
       if (!animate) {
@@ -895,14 +902,14 @@
 
     function closeModal() {
       modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      modal.classList.remove('block');
       document.body.style.overflow = '';
       currentProject = null;
     }
 
     closeModalBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+      if (e.target === modal || e.target === modal.firstElementChild) closeModal();
     });
     document.addEventListener('keydown', (e) => {
       if (!currentProject) return;
