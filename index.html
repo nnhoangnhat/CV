@@ -117,7 +117,7 @@
           <p class="text-xs text-sage-muted mt-1.5">Multimedia Designer & Creative Team Leader</p>
 
           <div class="flex items-center justify-center gap-2.5 mt-4">
-            <a href="#portfolio" title="Xem Portfolio Dự Án" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-dark transition text-xs font-bold">
+            <a href="https://nnhoangnhat.myportfolio.com" target="_blank" rel="noopener" title="Xem Portfolio Dự Án" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-dark transition text-xs font-bold">
               Bē
             </a>
             <a href="mailto:nnhoangnhat@gmail.com" title="Email" class="w-9 h-9 rounded-full bg-cream-soft hover:bg-sage hover:text-white flex items-center justify-center text-sage-dark transition">
@@ -129,8 +129,8 @@
           </div>
 
           <div class="grid grid-cols-2 gap-2.5 mt-5">
-            <a href="#portfolio" class="py-2.5 px-3 rounded-full bg-sage-dark hover:bg-sage text-white text-xs font-bold transition shadow-sm flex items-center justify-center gap-1">
-              Portfolio ↓
+            <a href="https://nnhoangnhat.myportfolio.com" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-full bg-sage-dark hover:bg-sage text-white text-xs font-bold transition shadow-sm flex items-center justify-center gap-1">
+              Portfolio ↗
             </a>
             <a href="#contact" class="py-2.5 px-3 rounded-full border border-sage text-sage-dark hover:bg-sage-light text-xs font-bold transition flex items-center justify-center">
               Liên Hệ
@@ -141,9 +141,6 @@
         <nav class="bento-card p-3 space-y-1 hidden lg:block">
           <a href="#home" class="nav-item active flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-sage-muted hover:bg-cream-soft transition">
             <span class="w-2 h-2 rounded-full bg-sage"></span> Tổng Quan
-          </a>
-          <a href="#portfolio" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-sage-muted hover:bg-cream-soft transition">
-            <span class="w-2 h-2 rounded-full bg-sage/40"></span> Portfolio Dự Án
           </a>
           <a href="#about" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-sage-muted hover:bg-cream-soft transition">
             <span class="w-2 h-2 rounded-full bg-sage/40"></span> Giới Thiệu & Số Liệu
@@ -223,44 +220,6 @@
               <span class="text-sage">•</span>
               <span>SYSLYTIC (EEzZ APP)</span>
             </div>
-          </div>
-        </section>
-
-        <!-- INTEGRATED PORTFOLIO SHOWCASE (5 ITEMS) -->
-        <section id="portfolio" class="bento-card p-6 sm:p-8 space-y-6">
-          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-            <div>
-              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-bold mb-2">
-                ● Selected Works • Portfolio Trực Tuyến
-              </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-sage-ink">Dự Án Tiêu Biểu</h2>
-            </div>
-
-            <!-- 5 Category Filter Tabs -->
-            <div class="flex flex-wrap gap-2" id="portfolioFilters">
-              <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                Tất Cả (05)
-              </button>
-              <button data-filter="key-visual" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                Key Visual
-              </button>
-              <button data-filter="posm" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                POSM
-              </button>
-              <button data-filter="post" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                Post
-              </button>
-              <button data-filter="motion-graphic" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                Motion Graphic
-              </button>
-              <button data-filter="ai-video" class="filter-btn px-3.5 py-1.5 rounded-full border border-sage-border text-xs font-bold text-sage-ink hover:border-sage transition">
-                AI Video
-              </button>
-            </div>
-          </div>
-
-          <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Rendered via JS -->
           </div>
         </section>
 
@@ -946,8 +905,10 @@
       if (e.key === 'ArrowRight') stepSlide(1);
     });
 
-    // Initial render
-    renderProjects('all');
+    // Khởi tạo hiển thị dự án (chỉ chạy khi còn khung portfolioGrid)
+    if (document.getElementById('portfolioGrid')) {
+      renderProjects('all');
+    }
 
     // Active navigation highlight on scroll
     const sections = document.querySelectorAll('section[id]');
